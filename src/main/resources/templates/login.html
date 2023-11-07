@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{/fragments/head}"></head>
+<body>
+
+<header th:replace="~{/fragments/navigation}"></header>
+
+<div class="login-form container bg-dark">
+
+    <form th:method="POST"
+          th:action="@{/users/login}">
+
+        <div class="mb-3">
+            <label for="email" class="form-label text-light">Email address</label>
+            <input class="form-control"
+                   id="email"
+                   type="text"
+                   name="email"
+                   th:value="${email}"
+                   required>
+        </div>
+
+        <div class="mb-3">
+            <label for="password" class="form-label text-light">Password</label>
+            <input class="form-control"
+                   id="password"
+                   type="password"
+                   name="password"
+                   th:value="${password}"
+                   required
+                   minlength="8"
+                   maxlength="40">
+            <small th:if="${bad_credentials}" class="bg-danger text-light">Incorrect username or password</small>
+        </div>
+
+        <div class="mb-3 form-check">
+            <input type="checkbox"
+                   name="rememberMe"
+                   class="form-check-input"
+                   id="rememberMe">
+            <label class="form-check-label text-light" for="rememberMe">Remember me</label>
+        </div>
+
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-primary">Login</button>
+        </div>
+
+    </form>
+
+</div>
+
+<footer th:replace="~{fragments/footer}"></footer>
+</body>
+</html>

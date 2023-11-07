@@ -1,4 +1,47 @@
-.wrapper {
-    display: grid;
-    grid-gap: 20px;
+html {
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-image: url("/images/site-bgr.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.mainBlurWrapper {
+    backdrop-filter: blur(4px);
+}
+
+.mainHeader {
+    text-align: center;
+    font-weight: bold;
+    text-decoration-color: black;
+}
+
+.register-form, .login-form {
+    width: 50%;
+    margin-top: 50px;
+    padding: 20px;
+}
+
+.logout-btn {
+    background-color: #212529;
+    border: none;
+    color: white;
+}
+
+.logout-form {
+    margin-top: 7px;
 }

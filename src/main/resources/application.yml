@@ -13,7 +13,6 @@ spring:
       filter:
         enabled: true
   jpa:
-#    database-platform: org.hibernate.dialect.MySQLDialect
     hibernate:
       ddl-auto: update
     open-in-view: false
@@ -21,3 +20,6 @@ spring:
       hibernate:
         format_sql: true
     defer-datasource-initialization: true
+
+bikeShop:
+  remember.me.key: ${REMEMBER_ME_KEY:secret}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{/fragments/head}"></head>
+<body>
+
+<header th:replace="~{/fragments/navigation}"></header>
+
+<div class="login-form container bg-dark">
+
+    <form class="was-validated needs-validation"
+          th:object="${contactUsBindingModel}"
+          th:method="POST"
+          th:action="@{/contact}">
+
+        <div class="mb-3">
+            <label for="email" class="form-label text-light">Email address</label>
+            <input th:field="*{email}"
+                   required
+                   type="email"
+                   class="form-control"
+                   id="email"
+                   placeholder="name@example.com"
+            >
+            <small class="bg-danger text-light" th:errors="*{email}"></small>
+        </div>
+        <div class="mb-3">
+            <label for="message" class="form-label text-light">Message</label>
+            <textarea th:field="*{message}"
+                      required
+                      minlength="10"
+                      class="form-control"
+                      id="message"
+                      rows="3"></textarea>
+            <small class="bg-danger text-light" th:errors="*{message}"></small>
+        </div>
+
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-primary">Send</button>
+        </div>
+
+    </form>
+
+</div>
+
+<footer th:replace="~{fragments/footer}"></footer>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{/fragments/head}"></head>
+<body>
+
+<header th:replace="~{/fragments/navigation}"></header>
+
+<div class="register-form container bg-dark">
+
+    <form class="was-validated needs-validation"
+          th:object="${userRegistrationBindingModel}"
+          th:method="POST"
+          th:action="@{/users/register}">
+
+        <div class="mb-3">
+            <label for="firstName" class="form-label text-light">First name</label>
+            <input th:field="*{firstName}"
+                   type="text"
+                   class="form-control"
+                   id="firstName"
+                   placeholder="Must be between 2 and 20 characters"
+                   required
+                   minlength="2"
+                   maxlength="20">
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+            <small class="bg-danger text-light" th:errors="*{firstName}"></small>
+
+        </div>
+
+        <div class="mb-3">
+            <label for="lastName" class="form-label text-light">Last name</label>
+            <input th:field="*{lastName}"
+                   type="text"
+                   class="form-control"
+                   id="lastName"
+                   placeholder="Must be between 2 and 20 characters"
+                   required
+                   minlength="2"
+                   maxlength="20">
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+            <small class="bg-danger text-light" th:errors="*{lastName}"></small>
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label text-light">Email address</label>
+            <input th:field="*{email}"
+                   type="email"
+                   class="form-control"
+                   id="email"
+                   placeholder="name@example.com"
+                   required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+            <small class="bg-danger text-light" th:errors="*{email}"></small>
+            <small class="bg-danger text-light" th:if="${emailExist}">Email already exist</small>
+        </div>
+
+        <div class="mb-3">
+            <label for="password" class="form-label text-light">Password</label>
+            <input th:field="*{password}"
+                   type="password"
+                   class="form-control"
+                   id="password"
+                   placeholder="Password must be between 8 and 40 characters"
+                   required
+                   minlength="8"
+                   maxlength="40">
+            <small class="bg-danger text-light" th:errors="*{password}"></small>
+            <small th:if="${passwordNotEquals}" class="bg-danger text-light">Password are not equals!</small>
+        </div>
+
+        <div class="mb-3">
+            <label for="confirmPassword" class="form-label text-light">Confirm password</label>
+            <input th:field="*{confirmPassword}"
+                   type="password"
+                   class="form-control"
+                   id="confirmPassword"
+                   placeholder="Password must be between 8 and 40 characters"
+                   required
+                   minlength="8"
+                   maxlength="40">
+            <small class="bg-danger text-light" th:errors="*{confirmPassword}"></small>
+        </div>
+
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-primary">Register</button>
+        </div>
+
+    </form>
+
+</div>
+
+<footer th:replace="~{fragments/footer}"></footer>
+</body>
+</html>
