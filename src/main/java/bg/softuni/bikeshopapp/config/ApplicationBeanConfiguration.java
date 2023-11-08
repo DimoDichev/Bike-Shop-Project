@@ -1,8 +1,10 @@
 package bg.softuni.bikeshopapp.config;
 
 import bg.softuni.bikeshopapp.model.binding.UserRegistrationBindingModel;
+import bg.softuni.bikeshopapp.model.entity.BikeEntity;
 import bg.softuni.bikeshopapp.model.entity.UserEntity;
 import bg.softuni.bikeshopapp.model.enums.UserRoleEnum;
+import bg.softuni.bikeshopapp.model.view.BikeBaseViewModel;
 import bg.softuni.bikeshopapp.repository.UserRoleRepository;
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;

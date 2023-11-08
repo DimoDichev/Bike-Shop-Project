@@ -21,7 +21,7 @@ public class BikeShopUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) {
         return userRepository.findByEmail(email)
                 .map(BikeShopUserDetailsService::map)
-                .orElseThrow(ObjectNotFoundException::new);
+                .orElseThrow(() -> new ObjectNotFoundException(email + " does not exist!"));
     }
 
     private static UserDetails map(UserEntity userEntity) {
