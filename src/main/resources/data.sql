@@ -41,15 +41,14 @@ VALUES (9, 'MTB', 'Wreckoning', 2),
        (12, 'MTB', 'Insurgent', 2);
 
 insert into models(id, category, name, manufacturer_id)
-VALUES (13, 'MTB', 'Fourstroke', 3),
-       (14, 'MTB', 'Twostroke', 3);
+VALUES (13, 'MTB', 'Fourstroke', 3);
 
 insert into models(id, category, name, manufacturer_id)
-VALUES (15, 'TOURING', 'Hoplit Pi Plus', 4),
-       (16, 'ROAD', 'Aristos R', 4);
+VALUES (14, 'TOURING', 'Hoplit Pi Plus', 4),
+       (15, 'ROAD', 'Aristos R', 4);
 
 insert into models(id, category, name, manufacturer_id)
-VALUES (17, 'MTB', 'Karate Monkey', 5);
+VALUES (16, 'MTB', 'Karate Monkey', 5);
 
 
 -- bikes
@@ -70,7 +69,23 @@ VALUES (1,
     (7, 'We were born to play, and so was the Switchback Gen 3 – the most playful hardtail on the market.',
      'STEEL', 'M', 2500, 27.5, 1),
     (8, 'The original aim of the Switchback was to design the most playful natured and confidence inspiring aggressive frame that we possibly could. The Switchback Ti is an evolution of this ethos.',
-     'TITANIUM', 'M', 4800, 27.5, 5);
+     'TITANIUM', 'M', 4800, 27.5, 5),
+    (9, 'A proper pocketknife covers all the slicing tasks you imagine, and the unexpected ones in between. Our Offering platform aims to do the same. The bike is stiff and responsive, pairing the smooth pedaling platform of our Following with some added padding so you can release the brakes and let gravity take over.',
+     'CARBON', 'M', 9500, 29, 10),
+    (10, 'The Insurgent is the most shape-shifty Evil to date, and no matter the configuration, it’s built for the long send. Sure, you can comfortably pedal it uphill, but gravity is the bullseye that this machine nails every time. With all the best bits of our Wreckoning platform, and a little something extra, the Insurgent will mop up your mistakes and crack open possibilities.',
+     'CARBON', 'XXL', 8000, 29, 12),
+    (11, 'This bike kicked off the shred-trail 29er movement, and we haven’t hit the mute button on loud, fast, and fun times. We need to let the volume roar and this bike needs to claw after every extra-credit popportunity. Oh, and it drifts uphill too.',
+     'CARBON', 'L', 9300, 29, 11),
+    (12, 'The Wreckoning LS has nudged the limits of balance and grip, vetted by racers and weekend rippers alike. This is the bike you''ll find "too fast for me" with. The platform for lapping extra gnarly descents that offers a cozy pedaling position on the next climb.',
+     'CARBON', 'M', 11000, 29, 9),
+    (13, 'Fourstroke 01 is an XCO performance bike that exceeds the demands of the world’s top racers.',
+     'CARBON', 'S', 13000, 29, 13),
+    (14, 'The Falkenjagd Hoplit Pi Plus is an uncompromising touring bike and copes well on all surfaces of this world.',
+     'TITANIUM', 'M', 9000, 28, 14),
+    (15, 'The Falkenjagd Aristos R is winner of the Design and Innovation Award 2022 and far ahead of its time! It convinces with versatile features and combines lightweight, robustness, comfort and agility with a high-quality equipment.',
+     'TITANIUM', 'L', 7000, 28, 15),
+    (16, 'Karate Monkey delivers a resilient, lively ride on all sorts of gnarly terrain.',
+     'STEEL', 'S', 2000, 27.5, 16);
 
 -- pictures
 insert into pictures(id, url, bike_id)
@@ -81,4 +96,21 @@ VALUES (1, 'https://res.cloudinary.com/duomcwff3/image/upload/v1699477482/BikeSh
     (5, 'https://res.cloudinary.com/duomcwff3/image/upload/v1699477742/BikeShop/Bikes/jcpttwbzmhnm35nnffwx.jpg', 5),
     (6, 'https://res.cloudinary.com/duomcwff3/image/upload/v1699477778/BikeShop/Bikes/tlwahm8soh6o8fruosiv.jpg', 6),
     (7, 'https://res.cloudinary.com/duomcwff3/image/upload/v1699477804/BikeShop/Bikes/kgxlhu4hewvollooqkc9.jpg', 7),
-    (8, 'https://res.cloudinary.com/duomcwff3/image/upload/v1699477827/BikeShop/Bikes/ndgt2dwbi2sibknftsds.jpg', 8);
+    (8, 'https://res.cloudinary.com/duomcwff3/image/upload/v1699477827/BikeShop/Bikes/ndgt2dwbi2sibknftsds.jpg', 8),
+    (9, 'https://res.cloudinary.com/duomcwff3/image/upload/v1699525462/BikeShop/Bikes/r55akcose6apkpet3v6y.jpg', 9),
+    (10, 'https://res.cloudinary.com/duomcwff3/image/upload/v1699525502/BikeShop/Bikes/vcl8a8pquosibwrqixym.jpg', 9),
+    (11, 'https://res.cloudinary.com/duomcwff3/image/upload/v1699525548/BikeShop/Bikes/mbfys5ki3z2fwccyd7ja.jpg', 9),
+    (12, 'https://res.cloudinary.com/duomcwff3/image/upload/v1699525691/BikeShop/Bikes/umpqmvrokltujgyv2gqb.jpg', 10),
+    (13, 'https://res.cloudinary.com/duomcwff3/image/upload/v1699525746/BikeShop/Bikes/jfy8703vzgs3sa7qczwm.jpg', 10),
+    (14, 'https://res.cloudinary.com/duomcwff3/image/upload/v1699525774/BikeShop/Bikes/t6pjlkdylysj0cuerov1.jpg', 10),
+    (15, 'https://res.cloudinary.com/duomcwff3/image/upload/v1699525989/BikeShop/Bikes/u0hmk1icr5ewloexsapq.jpg', 11),
+    (16, 'https://res.cloudinary.com/duomcwff3/image/upload/v1699526019/BikeShop/Bikes/k8oyxmcdfp68iabzmw6o.jpg', 11),
+    (17, 'https://res.cloudinary.com/duomcwff3/image/upload/v1699526050/BikeShop/Bikes/bt56kz4wifgqs6hwlro5.jpg', 11),
+    (18, 'https://res.cloudinary.com/duomcwff3/image/upload/v1699526196/BikeShop/Bikes/f7f95xb9cq2en4vlblyv.jpg', 12),
+    (19, 'https://res.cloudinary.com/duomcwff3/image/upload/v1699526341/BikeShop/Bikes/n6be6hkjoavbgylxlp6i.jpg', 12),
+    (20, 'https://res.cloudinary.com/duomcwff3/image/upload/v1699526361/BikeShop/Bikes/kas5ohtdycphaqewg2on.jpg', 12),
+    (21, 'https://res.cloudinary.com/duomcwff3/image/upload/v1699526852/BikeShop/Bikes/rsvucccqcju4pnrqhnv5.jpg', 13),
+    (22, 'https://res.cloudinary.com/duomcwff3/image/upload/v1699526903/BikeShop/Bikes/s8yirsixgq6ebtrotkku.jpg', 13),
+    (23, 'https://res.cloudinary.com/duomcwff3/image/upload/v1699527635/BikeShop/Bikes/fmqi4pqsnvdzvrwetc3j.jpg', 14),
+    (24, 'https://res.cloudinary.com/duomcwff3/image/upload/v1699527877/BikeShop/Bikes/wn4rnawkhhut75tpe100.jpg', 15),
+    (25, 'https://res.cloudinary.com/duomcwff3/image/upload/v1699528054/BikeShop/Bikes/pakfmb37ryorfzrwqfen.jpg', 16);

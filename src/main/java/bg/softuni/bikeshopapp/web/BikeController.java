@@ -30,4 +30,10 @@ public class BikeController {
         return "bikes-view";
     }
 
+    @GetMapping("/details/{id}")
+    public String viewBikeDetails(@PathVariable Long id, Model model) {
+        model.addAttribute("bikeDetails", bikeService.getBikeDetailsById(id));
+        return "bike-details";
+    }
+
 }

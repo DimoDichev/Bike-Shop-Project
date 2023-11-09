@@ -1,7 +1,7 @@
 package bg.softuni.bikeshopapp.model.view;
 
 public class BikeBaseViewModel {
-
+    private Long id;
     private String manufacturer;
     private String model;
     private String imageUrl;
@@ -15,6 +15,15 @@ public class BikeBaseViewModel {
 
     public BikeBaseViewModel setManufacturer(String manufacturer) {
         this.manufacturer = manufacturer;
+        return this;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public BikeBaseViewModel setId(Long id) {
+        this.id = id;
         return this;
     }
 

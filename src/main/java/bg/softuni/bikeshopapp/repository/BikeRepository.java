@@ -9,7 +9,5 @@ import java.util.List;
 
 @Repository
 public interface BikeRepository extends JpaRepository<BikeEntity, Long> {
-
     List<BikeEntity> findByModel_CategoryOrderById(ModelCategoryEnum model_category);
-
 }

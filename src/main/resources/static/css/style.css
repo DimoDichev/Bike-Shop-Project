@@ -49,3 +49,15 @@ body {
 .details-view {
     margin: 25px;
 }
+
+.gallery {
+    margin: 25px;
+    padding-bottom: 20px;
+}
+
+.center {
+    border: 1px solid;
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+}
