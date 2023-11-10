@@ -1,5 +1,5 @@
 package bg.softuni.bikeshopapp.model.enums;
 
-public enum ModelCategoryEnum {
+public enum CategoryEnum {
     MTB, ROAD, TOURING
 }

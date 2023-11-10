@@ -1,5 +1,6 @@
 package bg.softuni.bikeshopapp.config;
 
+import bg.softuni.bikeshopapp.model.enums.UserRoleEnum;
 import bg.softuni.bikeshopapp.repository.UserRepository;
 import bg.softuni.bikeshopapp.service.impl.BikeShopUserDetailsService;
 import org.springframework.beans.factory.annotation.Value;
@@ -32,6 +33,7 @@ public class SecurityConfiguration {
                                 "/users/register",
                                 "/users/login",
                                 "/users/login-error").permitAll()
+                        .requestMatchers("/admin/**").hasRole(UserRoleEnum.ADMIN.name())
                         .anyRequest().authenticated()
         ).formLogin(
                 formLogin -> {

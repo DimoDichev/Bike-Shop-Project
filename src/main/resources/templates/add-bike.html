@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{/fragments/head}"></head>
+<body>
+
+<header th:replace="~{/fragments/navigation}"></header>
+
+<div class="mainBlurWrapper">
+    <h1 class="mainHeader">Add bike</h1>
+
+    <br>
+
+    <div class="center bg-dark">
+
+        <form th:method="POST"
+              th:action="@{/admin/add/bike}">
+
+            <label class="text-center text-white font-weight-bold" for="modelId">Model</label>
+            <select id="modelId"
+                    th:name="modelId"
+                    class="form-control">
+                <option value="">- Select a model -</option>
+                <optgroup
+                        th:each="manufactuter : ${manufacturers}"
+                        th:label="${manufactuter.name}">
+
+                    <option
+                            th:each="model : ${manufactuter.getModels()}"
+                            th:text="${model.name}"
+                            th:value="${model.id}">
+                    </option>
+
+                </optgroup>
+            </select>
+
+        </form>
+
+    </div>
+
+
+</div>
+
+<footer th:replace="~{fragments/footer}"></footer>
+</body>
+</html>

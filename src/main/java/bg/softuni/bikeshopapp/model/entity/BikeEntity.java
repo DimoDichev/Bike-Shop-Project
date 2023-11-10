@@ -1,5 +1,6 @@
 package bg.softuni.bikeshopapp.model.entity;
 
+import bg.softuni.bikeshopapp.model.enums.CategoryEnum;
 import bg.softuni.bikeshopapp.model.enums.FrameMaterialEnum;
 import bg.softuni.bikeshopapp.model.enums.FrameSizeEnum;
 import jakarta.persistence.*;
@@ -16,11 +17,13 @@ public class BikeEntity extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private FrameMaterialEnum frameMaterial;
     @Column(nullable = false)
-    private double wheelSize;
+    private String wheelSize;
     @Column(columnDefinition = "TEXT")
     private String description;
-    @OneToMany(mappedBy = "bike", fetch = FetchType.EAGER)
-    private Set<PictureEntity> imageUrl;
+    @OneToMany(fetch = FetchType.EAGER)
+    private Set<PictureEntity> imagesUrl;
+    @Enumerated(EnumType.STRING)
+    private CategoryEnum category;
     @Column()
     private Double price;
 
@@ -54,11 +57,11 @@ public class BikeEntity extends BaseEntity {
         return this;
     }
 
-    public double getWheelSize() {
+    public String getWheelSize() {
         return wheelSize;
     }
 
-    public BikeEntity setWheelSize(double wheelSize) {
+    public BikeEntity setWheelSize(String wheelSize) {
         this.wheelSize = wheelSize;
         return this;
     }
@@ -73,11 +76,20 @@ public class BikeEntity extends BaseEntity {
     }
 
     public Set<PictureEntity> getImageUrl() {
-        return imageUrl;
+        return imagesUrl;
     }
 
     public BikeEntity setImageUrl(Set<PictureEntity> imageUrl) {
-        this.imageUrl = imageUrl;
+        this.imagesUrl = imageUrl;
+        return this;
+    }
+
+    public CategoryEnum getCategory() {
+        return category;
+    }
+
+    public BikeEntity setCategory(CategoryEnum category) {
+        this.category = category;
         return this;
     }
 

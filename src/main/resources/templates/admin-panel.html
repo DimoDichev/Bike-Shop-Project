@@ -7,47 +7,56 @@
 
 <header th:replace="~{/fragments/navigation}"></header>
 
-<div class="login-form container bg-dark">
+<div class="mainBlurWrapper">
+    <h1 class="mainHeader">Admin panel</h1>
 
-    <form th:method="POST"
-          th:action="@{/users/login}">
+    <br>
 
-        <div class="mb-3">
-            <label for="email" class="form-label text-light">Email address</label>
-            <input class="form-control"
-                   id="email"
-                   type="text"
-                   name="email"
-                   th:value="${email}"
-                   required>
+    <div class="center bg-dark rounded">
+
+        <p class="text-center text-white fw-bold">Add menu</p>
+
+        <div class="list-group">
+            <a th:href="@{/admin/add/manufacturer}" class="list-group-item list-group-item-action">Add Manufactures</a>
+            <a th:href="@{/admin/add/model}" class="list-group-item list-group-item-action">Add model</a>
+            <a th:href="@{/admin/add/bike}" class="list-group-item list-group-item-action">Add bike</a>
+            <a href="#" class="list-group-item list-group-item-action">Add components</a>
+            <a href="#" class="list-group-item list-group-item-action">Add accessories</a>
+            <a href="#" class="list-group-item list-group-item-action">Add article</a>
         </div>
 
-        <div class="mb-3">
-            <label for="password" class="form-label text-light">Password</label>
-            <input class="form-control"
-                   id="password"
-                   type="password"
-                   name="password"
-                   th:value="${password}"
-                   required
-                   minlength="8"
-                   maxlength="40">
-            <small th:if="${bad_credentials}" class="bg-danger text-light">Incorrect username or password</small>
+    </div>
+
+    <br>
+
+    <div class="center bg-dark rounded">
+
+        <p class="text-center text-white fw-bold">Edit menu</p>
+
+        <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action">Edit Manufactures</a>
+            <a href="#" class="list-group-item list-group-item-action">Edit model</a>
+            <a href="#" class="list-group-item list-group-item-action">Edit bike</a>
+            <a href="#" class="list-group-item list-group-item-action">Edit components</a>
+            <a href="#" class="list-group-item list-group-item-action">Edit accessories</a>
+            <a href="#" class="list-group-item list-group-item-action">Edit article</a>
+            <a href="#" class="list-group-item list-group-item-action">Edit users</a>
         </div>
 
-        <div class="mb-3 form-check">
-            <input type="checkbox"
-                   name="rememberMe"
-                   class="form-check-input"
-                   id="rememberMe">
-            <label class="form-check-label text-light" for="rememberMe">Remember me</label>
+    </div>
+
+    <br>
+
+    <div class="center bg-dark rounded">
+
+        <p class="text-center text-white fw-bold">Messages</p>
+
+        <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action">Messages</a>
+
         </div>
 
-        <div class="d-grid gap-2">
-            <button type="submit" class="btn btn-primary">Login</button>
-        </div>
-
-    </form>
+    </div>
 
 </div>
 

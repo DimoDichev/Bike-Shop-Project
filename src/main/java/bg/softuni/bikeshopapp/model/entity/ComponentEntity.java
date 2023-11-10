@@ -15,8 +15,8 @@ public class ComponentEntity extends BaseEntity {
     private ComponentsTypeEnum type;
     @Column(columnDefinition = "TEXT")
     private String description;
-    @OneToMany(mappedBy = "bike", fetch = FetchType.EAGER)
-    private Set<PictureEntity> imageUrl;
+    @OneToMany(fetch = FetchType.EAGER)
+    private Set<PictureEntity> imagesUrl;
     @Column()
     private Double price;
 
@@ -51,11 +51,11 @@ public class ComponentEntity extends BaseEntity {
     }
 
     public Set<PictureEntity> getImageUrl() {
-        return imageUrl;
+        return imagesUrl;
     }
 
     public ComponentEntity setImageUrl(Set<PictureEntity> imageUrl) {
-        this.imageUrl = imageUrl;
+        this.imagesUrl = imageUrl;
         return this;
     }
 

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{/fragments/head}"></head>
+<body>
+
+<header th:replace="~{/fragments/navigation}"></header>
+
+<div class="mainBlurWrapper">
+    <h1 class="mainHeader">Add manufacturer</h1>
+
+    <br>
+
+    <div class="center bg-dark">
+
+        <form th:object="${manufacturerAddBindingModel}"
+              th:method="POST"
+              th:action="@{/admin/add/manufacturer}">
+            <label for="name" class="text-white">Manufacturer name</label>
+            <input id="name"
+                   th:field="*{name}"
+                   name="name"
+                   type="text"
+                   class="form-control"
+                   required>
+            <small class="bg-danger text-light" th:errors="*{name}"></small>
+            <small class="bg-danger text-light" th:if="${alreadyExist}">Manufacturer already exist!</small>
+
+            <br>
+
+            <button type="submit" class="btn btn-info">Save</button>
+            <a href="/admin/panel" class="btn btn-info">Back</a>
+
+        </form>
+
+    </div>
+
+
+</div>
+
+<footer th:replace="~{fragments/footer}"></footer>
+</body>
+</html>

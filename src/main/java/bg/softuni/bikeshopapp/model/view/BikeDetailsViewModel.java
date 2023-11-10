@@ -8,7 +8,7 @@ public class BikeDetailsViewModel {
     private String model;
     private String size;
     private String frameMaterial;
-    private Double wheelSize;
+    private String wheelSize;
     private String description;
     private List<String> imagesUrl;
     private Double price;
@@ -52,11 +52,11 @@ public class BikeDetailsViewModel {
         return this;
     }
 
-    public Double getWheelSize() {
+    public String getWheelSize() {
         return wheelSize;
     }
 
-    public BikeDetailsViewModel setWheelSize(Double wheelSize) {
+    public BikeDetailsViewModel setWheelSize(String wheelSize) {
         this.wheelSize = wheelSize;
         return this;
     }

@@ -56,7 +56,7 @@
                 Bikes
             </button>
             <ul class="dropdown-menu">
-                <li th:each=" c : ${T(bg.softuni.bikeshopapp.model.enums.ModelCategoryEnum).values()}">
+                <li th:each=" c : ${T(bg.softuni.bikeshopapp.model.enums.CategoryEnum).values()}">
                     <a class="dropdown-item" th:value="${c}" th:text="${c}" th:href="@{/bikes/{category}(category=${c})}"></a>
                 </li>
                 <li>
@@ -86,22 +86,6 @@
             <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
                     aria-expanded="false">
                 Accessories
-            </button>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                <li>
-                    <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item" href="#">View all</a></li>
-            </ul>
-        </div>
-
-        <div class="btn-group">
-            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                Apparel
             </button>
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="#">Action</a></li>

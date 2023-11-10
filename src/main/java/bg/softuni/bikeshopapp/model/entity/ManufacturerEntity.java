@@ -1,9 +1,6 @@
 package bg.softuni.bikeshopapp.model.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.Set;
 
@@ -13,7 +10,7 @@ public class ManufacturerEntity extends BaseEntity {
 
     @Column(nullable = false, unique = true)
     private String name;
-    @OneToMany(mappedBy = "manufacturer")
+    @OneToMany(mappedBy = "manufacturer", fetch = FetchType.EAGER)
     private Set<ModelEntity> models;
 
     public ManufacturerEntity() {

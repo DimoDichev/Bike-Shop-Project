@@ -2,7 +2,7 @@ package bg.softuni.bikeshopapp.service.impl;
 
 import bg.softuni.bikeshopapp.exception.ObjectNotFoundException;
 import bg.softuni.bikeshopapp.model.entity.PictureEntity;
-import bg.softuni.bikeshopapp.model.enums.ModelCategoryEnum;
+import bg.softuni.bikeshopapp.model.enums.CategoryEnum;
 import bg.softuni.bikeshopapp.model.view.BikeBaseViewModel;
 import bg.softuni.bikeshopapp.model.view.BikeDetailsViewModel;
 import bg.softuni.bikeshopapp.repository.BikeRepository;
@@ -24,7 +24,7 @@ public class BikeServiceImpl implements BikeService {
     @Override
     public List<BikeBaseViewModel> findByCategories(String category) {
         return bikeRepository
-                .findByModel_CategoryOrderById(ModelCategoryEnum.valueOf(category))
+                .findByCategory(CategoryEnum.valueOf(category))
                 .stream()
                 .map(bikeEntity -> new BikeBaseViewModel()
                         .setId(bikeEntity.getId())
