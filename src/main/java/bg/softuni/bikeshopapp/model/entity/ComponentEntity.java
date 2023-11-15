@@ -11,12 +11,16 @@ public class ComponentEntity extends BaseEntity {
 
     @ManyToOne
     private ModelEntity model;
+
     @Enumerated(EnumType.STRING)
     private ComponentsTypeEnum type;
+
     @Column(columnDefinition = "TEXT")
     private String description;
+
     @OneToMany(fetch = FetchType.EAGER)
     private Set<PictureEntity> imagesUrl;
+
     @Column()
     private Double price;
 
@@ -50,12 +54,12 @@ public class ComponentEntity extends BaseEntity {
         return this;
     }
 
-    public Set<PictureEntity> getImageUrl() {
+    public Set<PictureEntity> getImagesUrl() {
         return imagesUrl;
     }
 
-    public ComponentEntity setImageUrl(Set<PictureEntity> imageUrl) {
-        this.imagesUrl = imageUrl;
+    public ComponentEntity setImagesUrl(Set<PictureEntity> imagesUrl) {
+        this.imagesUrl = imagesUrl;
         return this;
     }
 

@@ -17,12 +17,12 @@
         <p class="text-center text-white fw-bold">Add menu</p>
 
         <div class="list-group">
-            <a th:href="@{/admin/add/manufacturer}" class="list-group-item list-group-item-action">Add Manufactures</a>
-            <a th:href="@{/admin/add/model}" class="list-group-item list-group-item-action">Add model</a>
-            <a th:href="@{/admin/add/bike}" class="list-group-item list-group-item-action">Add bike</a>
-            <a href="#" class="list-group-item list-group-item-action">Add components</a>
-            <a href="#" class="list-group-item list-group-item-action">Add accessories</a>
-            <a href="#" class="list-group-item list-group-item-action">Add article</a>
+            <a th:href="@{/manufacturers/add}" class="list-group-item list-group-item-action">Add Manufactures</a>
+            <a th:href="@{/models/add}" class="list-group-item list-group-item-action">Add model</a>
+            <a th:href="@{/bikes/add}" class="list-group-item list-group-item-action">Add bike</a>
+            <a th:href="@{/components/add}" class="list-group-item list-group-item-action">Add components</a>
+            <a th:href="@{/accessories/add}" class="list-group-item list-group-item-action">Add accessories</a>
+            <a th:href="@{/articles/add}" class="list-group-item list-group-item-action">Add article</a>
         </div>
 
     </div>
@@ -34,12 +34,20 @@
         <p class="text-center text-white fw-bold">Edit menu</p>
 
         <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action">Edit Manufactures</a>
-            <a href="#" class="list-group-item list-group-item-action">Edit model</a>
-            <a href="#" class="list-group-item list-group-item-action">Edit bike</a>
-            <a href="#" class="list-group-item list-group-item-action">Edit components</a>
-            <a href="#" class="list-group-item list-group-item-action">Edit accessories</a>
-            <a href="#" class="list-group-item list-group-item-action">Edit article</a>
+            <a th:href="@{/manufacturers/edit}" class="list-group-item list-group-item-action">Edit Manufactures</a>
+            <a th:href="@{/models/edit}" class="list-group-item list-group-item-action">Edit model</a>
+        </div>
+
+    </div>
+
+    <br>
+
+    <div class="center bg-dark rounded">
+
+        <p class="text-center text-white fw-bold">User menu</p>
+
+        <div class="list-group">
+            <a th:href="@{/users/activates}" class="list-group-item list-group-item-action">Activate user</a>
             <a href="#" class="list-group-item list-group-item-action">Edit users</a>
         </div>
 

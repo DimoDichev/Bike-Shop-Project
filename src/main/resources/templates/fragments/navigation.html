@@ -11,6 +11,9 @@
     <div class="container-fluid bg-dark">
         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
             <a class="navbar-brand" th:href="@{/}">Bike Shop</a>
+            <span class="text-white" sec:authorize="isAuthenticated()"> Welcome
+                <th:block sec:authentication="principal.firstName"></th:block>
+            </span>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -27,7 +30,7 @@
                             <a class="nav-link active" th:href="@{/users/register}">Register</a>
                         </li>
                     </th:block>
-                    <li class="nav-item">
+                    <li sec:authorize="!hasRole('ADMIN')" class="nav-item">
                         <a class="nav-link active" th:href="@{/contact}">Contact us</a>
                     </li>
                     <li class="nav-item">

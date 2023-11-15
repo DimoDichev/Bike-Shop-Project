@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="~{/fragments/head}"></head>
+<body>
+
+<header th:replace="~{/fragments/navigation}"></header>
+
+<div class="mainBlurWrapper">
+    <h1 class="mainHeader">You do not have permission to access a web page</h1>
+    <img class="rounded mx-auto d-block mainHeader" src="/images/403.jpg" alt="403">
+</div>
+
+<footer th:replace="~{fragments/footer}"></footer>
+</body>
+
+</html>

@@ -10,20 +10,28 @@ import java.util.Set;
 @Entity
 @Table(name = "bikes")
 public class BikeEntity extends BaseEntity {
+
     @ManyToOne
     private ModelEntity model;
+
     @Enumerated(EnumType.STRING)
     private FrameSizeEnum frameSize;
+
     @Enumerated(EnumType.STRING)
     private FrameMaterialEnum frameMaterial;
+
     @Column(nullable = false)
     private String wheelSize;
+
     @Column(columnDefinition = "TEXT")
     private String description;
+
     @OneToMany(fetch = FetchType.EAGER)
     private Set<PictureEntity> imagesUrl;
+
     @Enumerated(EnumType.STRING)
     private CategoryEnum category;
+
     @Column()
     private Double price;
 
@@ -75,12 +83,12 @@ public class BikeEntity extends BaseEntity {
         return this;
     }
 
-    public Set<PictureEntity> getImageUrl() {
+    public Set<PictureEntity> getImagesUrl() {
         return imagesUrl;
     }
 
-    public BikeEntity setImageUrl(Set<PictureEntity> imageUrl) {
-        this.imagesUrl = imageUrl;
+    public BikeEntity setImagesUrl(Set<PictureEntity> imagesUrl) {
+        this.imagesUrl = imagesUrl;
         return this;
     }
 

@@ -1,5 +1,5 @@
 package bg.softuni.bikeshopapp.model.enums;
 
 public enum UserRoleEnum {
-    ADMIN, USER
+    ADMIN, MODERATOR, USER
 }

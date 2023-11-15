@@ -1,6 +1,7 @@
 package bg.softuni.bikeshopapp.web;
 
 import bg.softuni.bikeshopapp.model.binding.UserRegistrationBindingModel;
+import bg.softuni.bikeshopapp.model.view.UserNotActivatedViewModel;
 import bg.softuni.bikeshopapp.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/users")
@@ -66,6 +69,13 @@ public class UserController {
         model.addAttribute("email", email);
         model.addAttribute("bad_credentials", true);
         return "login";
+    }
+
+    @GetMapping("/activates")
+    public String activateUsers(Model model) {
+        List<UserNotActivatedViewModel> notActivated = userService.getAllNotActivated();
+        model.addAttribute("notActivated", notActivated);
+        return "users-activations";
     }
 
     @ModelAttribute

@@ -8,6 +8,7 @@ public class ModelEntity extends BaseEntity {
 
     @Column(nullable = false, unique = true)
     private String name;
+
     @ManyToOne(fetch = FetchType.EAGER)
     private ManufacturerEntity manufacturer;
 

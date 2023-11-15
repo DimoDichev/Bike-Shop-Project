@@ -10,6 +10,7 @@ public class ManufacturerEntity extends BaseEntity {
 
     @Column(nullable = false, unique = true)
     private String name;
+
     @OneToMany(mappedBy = "manufacturer", fetch = FetchType.EAGER)
     private Set<ModelEntity> models;
 

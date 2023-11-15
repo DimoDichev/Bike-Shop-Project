@@ -30,7 +30,7 @@ public class BikeServiceImpl implements BikeService {
                         .setId(bikeEntity.getId())
                         .setManufacturer(bikeEntity.getModel().getManufacturer().getName())
                         .setModel(bikeEntity.getModel().getName())
-                        .setImageUrl(bikeEntity.getImageUrl().stream().findFirst().get().getUrl()))
+                        .setImageUrl(bikeEntity.getImagesUrl().stream().findFirst().get().getUrl()))
                 .toList();
     }
 
@@ -43,7 +43,7 @@ public class BikeServiceImpl implements BikeService {
                         .setId(bikeEntity.getId())
                         .setManufacturer(bikeEntity.getModel().getManufacturer().getName())
                         .setModel(bikeEntity.getModel().getName())
-                        .setImageUrl(bikeEntity.getImageUrl().stream().findFirst().get().getUrl()))
+                        .setImageUrl(bikeEntity.getImagesUrl().stream().findFirst().get().getUrl()))
                 .toList();
     }
 
@@ -59,7 +59,7 @@ public class BikeServiceImpl implements BikeService {
                         .setWheelSize(bikeEntity.getWheelSize())
                         .setDescription(bikeEntity.getDescription())
                         .setImagesUrl(bikeEntity
-                                .getImageUrl()
+                                .getImagesUrl()
                                 .stream()
                                 .map(PictureEntity::getUrl)
                                 .collect(Collectors.toList()))

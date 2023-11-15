@@ -1,6 +1,7 @@
 package bg.softuni.bikeshopapp.model.entity;
 
 import jakarta.persistence.*;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,24 +11,23 @@ public class UserEntity extends BaseEntity {
 
     @Column(nullable = false, unique = true)
     private String email;
+
     @Column(nullable = false)
     private String password;
+
     @Column(nullable = false)
     private String firstName;
+
     @Column(nullable = false)
     private String lastName;
+
+    @Column
+    private Boolean enabled;
+
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<UserRoleEntity> roles = new HashSet<>();
 
     public UserEntity() {
-    }
-
-    public UserEntity(String email, String password, String firstName, String lastName, Set<UserRoleEntity> roles) {
-        this.email = email;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.roles = roles;
     }
 
     public String getEmail() {
@@ -66,6 +66,15 @@ public class UserEntity extends BaseEntity {
         return this;
     }
 
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public UserEntity setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+        return this;
+    }
+
     public Set<UserRoleEntity> getRoles() {
         return roles;
     }
@@ -75,3 +84,4 @@ public class UserEntity extends BaseEntity {
         return this;
     }
 }
+

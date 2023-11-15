@@ -16,7 +16,7 @@
 
         <form th:object="${manufacturerAddBindingModel}"
               th:method="POST"
-              th:action="@{/admin/add/manufacturer}">
+              th:action="@{/manufacturers/add}">
             <label for="name" class="text-white">Manufacturer name</label>
             <input id="name"
                    th:field="*{name}"

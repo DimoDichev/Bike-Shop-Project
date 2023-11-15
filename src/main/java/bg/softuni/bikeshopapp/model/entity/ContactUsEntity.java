@@ -10,6 +10,7 @@ public class ContactUsEntity extends BaseEntity {
 
     @Column(nullable = false)
     private String email;
+
     @Column(nullable = false, columnDefinition = "TEXT")
     private String message;
 
