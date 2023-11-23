@@ -33,6 +33,8 @@ public class SecurityConfiguration implements WebMvcConfigurer {
                                         "/users/login",
                                         "/users/login-error").permitAll()
                                 .requestMatchers("/admin/**").hasRole(UserRoleEnum.ADMIN.name())
+                                .requestMatchers("/users/activations/**").hasRole(UserRoleEnum.ADMIN.name())
+                                .requestMatchers("/users/edit/**").hasRole(UserRoleEnum.ADMIN.name())
                                 .requestMatchers("/manufacturers/**").hasRole(UserRoleEnum.ADMIN.name())
                                 .requestMatchers("/models/**").hasRole(UserRoleEnum.ADMIN.name())
                                 .anyRequest().authenticated()

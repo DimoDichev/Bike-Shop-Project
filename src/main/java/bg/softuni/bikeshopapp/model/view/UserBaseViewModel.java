@@ -1,20 +1,20 @@
 package bg.softuni.bikeshopapp.model.view;
 
-public class UserNotActivatedViewModel {
+public class UserBaseViewModel {
 
     private Long id;
     private String email;
     private String firstName;
     private String lastName;
 
-    public UserNotActivatedViewModel() {
+    public UserBaseViewModel() {
     }
 
     public Long getId() {
         return id;
     }
 
-    public UserNotActivatedViewModel setId(Long id) {
+    public UserBaseViewModel setId(Long id) {
         this.id = id;
         return this;
     }
@@ -23,7 +23,7 @@ public class UserNotActivatedViewModel {
         return email;
     }
 
-    public UserNotActivatedViewModel setEmail(String email) {
+    public UserBaseViewModel setEmail(String email) {
         this.email = email;
         return this;
     }
@@ -32,7 +32,7 @@ public class UserNotActivatedViewModel {
         return firstName;
     }
 
-    public UserNotActivatedViewModel setFirstName(String firstName) {
+    public UserBaseViewModel setFirstName(String firstName) {
         this.firstName = firstName;
         return this;
     }
@@ -41,7 +41,7 @@ public class UserNotActivatedViewModel {
         return lastName;
     }
 
-    public UserNotActivatedViewModel setLastName(String lastName) {
+    public UserBaseViewModel setLastName(String lastName) {
         this.lastName = lastName;
         return this;
     }

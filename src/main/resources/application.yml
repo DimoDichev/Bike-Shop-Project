@@ -26,3 +26,10 @@ spring:
 
 bikeShop:
   remember.me.key: ${REMEMBER_ME_KEY:secret}
+
+mail:
+  bikeshop: "bikeshop@bikes.com"
+  host: localhost
+  port: 1025
+  username: ${MAIL_USERNAME}
+  password: ${MAIL_PASSWORD}

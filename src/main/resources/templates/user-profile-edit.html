@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{/fragments/head}"></head>
+<body>
+
+<header th:replace="~{/fragments/navigation}"></header>
+
+<div class="mainBlurWrapper">
+    <h1 class="mainHeader">Edit user</h1>
+
+    <br>
+
+    <div class="center bg-dark rounded">
+
+        <p class="text-center text-white fw-bold">Users</p>
+
+
+            <div class="card" th:object="${userProfile}">
+                <img src="/images/userLogo.com.png" class="card-img-top" alt="" style="width: 12rem;">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">First name: <th:block th:text="*{firstName}"></th:block></li>
+                    <li class="list-group-item">Last name: <th:block th:text="*{lastname}"></th:block></li>
+                    <li class="list-group-item">Email: <th:block th:text="*{email}"></th:block></li>
+                    <li class="list-group-item">Role: <th:block th:text="*{userRole}"></th:block></li>
+                </ul>
+                <div class="card-body">
+                    <form>
+                        <button type="submit" class="btn btn-info">Make USER</button>
+                        <button type="submit" class="btn btn-info">Make MODERATOR</button>
+                        <button type="submit" class="btn btn-info">Make ADMIN</button>
+                    </form>
+                </div>
+                <div class="card-body">
+                    <form th:method="DELETE"
+                    th:action="@{/users/edit/{id}(id = *{id})}">
+                        <input type="submit" class="btn btn-info bg-danger" value="Delete">
+                    </form>
+                </div>
+            </div>
+
+            <br>
+
+            <a href="/users/edit" class="btn btn-info">Back</a>
+
+
+    </div>
+
+</div>
+
+<footer th:replace="~{fragments/footer}"></footer>
+</body>
+</html>

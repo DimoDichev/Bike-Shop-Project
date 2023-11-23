@@ -77,4 +77,8 @@ public class UserRegistrationBindingModel {
         this.confirmPassword = confirmPassword;
         return this;
     }
+
+    public String getFullName() {
+        return firstName + " " + lastName;
+    }
 }

@@ -1,6 +1,7 @@
 package bg.softuni.bikeshopapp.web;
 
 import bg.softuni.bikeshopapp.service.BikeService;
+import bg.softuni.bikeshopapp.service.ManufacturerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -10,9 +11,11 @@ import org.springframework.web.bind.annotation.*;
 public class BikeController {
 
     private final BikeService bikeService;
+    private final ManufacturerService manufacturerService;
 
-    public BikeController(BikeService bikeService) {
+    public BikeController(BikeService bikeService, ManufacturerService manufacturerService) {
         this.bikeService = bikeService;
+        this.manufacturerService = manufacturerService;
     }
 
     @GetMapping("/{category}")
@@ -31,6 +34,12 @@ public class BikeController {
     public String viewBikeDetails(@PathVariable Long id, Model model) {
         model.addAttribute("bikeDetails", bikeService.getBikeDetailsById(id));
         return "bike-details";
+    }
+
+    @GetMapping("/add")
+    public String addBike(Model model) {
+        model.addAttribute("manufacturers", manufacturerService.getAllManufacturersWithModels());
+        return "add-bike";
     }
 
 }

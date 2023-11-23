@@ -8,7 +8,7 @@
 <header th:replace="~{/fragments/navigation}"></header>
 
 <div class="mainBlurWrapper">
-    <h1 class="mainHeader">Activate user</h1>
+    <h1 class="mainHeader">Edit user</h1>
 
     <br>
 
@@ -33,7 +33,7 @@
                     <td th:text="*{lastName}">Last name</td>
                     <td th:text="*{email}">Email</td>
                     <td>
-                        <a th:href="@{/users/activations/{id}(id = *{id})}" class="btn btn-primary">Activate</a>
+                        <a th:href="@{/users/edit/{id}(id = *{id})}" class="btn btn-primary">Edit</a>
                     </td>
                 </tr>
                 </tbody>
