@@ -11,16 +11,16 @@ public class BikeAddBindingModel {
 
     @NotNull(message = "You must select a model!")
     private Long modelId;
-    @NotEmpty(message = "You must select a size!")
+    @NotNull(message = "You must select a size!")
     private FrameSizeEnum frameSize;
-    @NotEmpty(message = "You must select a frame material!")
+    @NotNull(message = "You must select a frame material!")
     private FrameMaterialEnum frameMaterial;
     @NotEmpty(message = "You must provide a wheel size!")
     private String wheelSize;
     private String description;
-    private PictureEntity imageUrl;
     @NotNull(message = "You must select a category!")
     private CategoryEnum category;
+    @NotNull(message = "You must provide a price!")
     private Double price;
 
     public BikeAddBindingModel() {
@@ -68,15 +68,6 @@ public class BikeAddBindingModel {
 
     public BikeAddBindingModel setDescription(String description) {
         this.description = description;
-        return this;
-    }
-
-    public PictureEntity getImageUrl() {
-        return imageUrl;
-    }
-
-    public BikeAddBindingModel setImageUrl(PictureEntity imageUrl) {
-        this.imageUrl = imageUrl;
         return this;
     }
 

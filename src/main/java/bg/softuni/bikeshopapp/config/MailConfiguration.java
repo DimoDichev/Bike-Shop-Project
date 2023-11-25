@@ -40,3 +40,5 @@ public class MailConfiguration {
     }
 
 }
+
+// TODO: Gmail

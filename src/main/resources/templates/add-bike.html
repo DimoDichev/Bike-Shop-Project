@@ -14,7 +14,8 @@
 
     <div class="center bg-dark">
 
-        <form th:method="POST"
+        <form th:object="${bikeAddBindingModel}"
+              th:method="POST"
               th:action="@{/bikes/add}">
 
             <label class="text-center text-white font-weight-bold" for="modelId">Model</label>
@@ -34,6 +35,82 @@
 
                 </optgroup>
             </select>
+            <small class="bg-danger text-light" th:errors="*{modelId}"></small>
+
+            <br>
+
+            <label class="text-center text-white font-weight-bold" for="frameSize">Size</label>
+            <select id="frameSize"
+                    th:field="*{frameSize}"
+                    th:name="frameSize"
+                    class="form-control">
+                <option value="">- Select a size -</option>
+                <option th:each="frameSize : ${T(bg.softuni.bikeshopapp.model.enums.FrameSizeEnum).values()}"
+                        th:value="${frameSize}"
+                        th:text="${frameSize}">
+                </option>
+            </select>
+            <small class="bg-danger text-light" th:errors="*{frameSize}"></small>
+
+            <br>
+
+            <label class="text-center text-white font-weight-bold" for="frameMaterial">Frame material</label>
+            <select id="frameMaterial"
+                    th:field="*{frameMaterial}"
+                    th:name="frameMaterial"
+                    class="form-control">
+                <option value="">- Select a frame material -</option>
+                <option th:each="frameMaterial : ${T(bg.softuni.bikeshopapp.model.enums.FrameMaterialEnum).values()}"
+                        th:value="${frameMaterial}"
+                        th:text="${frameMaterial}">
+                </option>
+            </select>
+            <small class="bg-danger text-light" th:errors="*{frameMaterial}"></small>
+
+            <br>
+
+            <label for="wheelSize" class="col-form-label text-white">Wheel size</label>
+            <input th:fields="*{wheelSize}"
+                   th:name="wheelSize"
+                   type="text"
+                   class="form-control"
+                   id="wheelSize">
+            <small class="bg-danger text-light" th:errors="*{wheelSize}"></small>
+            <br>
+
+            <label for="description" class="col-form-label text-white">Description</label>
+            <textarea th:field="*{description}"
+                      th:errorclass="bg-danger"
+                      id="description"
+                      class="form-control"
+                      aria-describedby="inputDescriptionError"></textarea>
+            <br>
+
+            <label class="text-center text-white font-weight-bold" for="category">Bike category</label>
+            <select id="category"
+                    th:field="*{category}"
+                    class="form-control">
+                <option value="">- Select a bike category -</option>
+                <option th:each="category : ${T(bg.softuni.bikeshopapp.model.enums.CategoryEnum).values()}"
+                        th:value="${category}"
+                        th:text="${category}">
+                </option>
+            </select>
+            <small class="bg-danger text-light" th:errors="*{category}"></small>
+
+            <br>
+
+            <label for="price" class="col-form-label text-white">Price</label>
+            <input th:fields="*{price}"
+                   th:name="price"
+                   type="number"
+                   class="form-control"
+                   id="price">
+            <small class="bg-danger text-light" th:errors="*{price}"></small>
+            <br>
+
+            <a href="/admin/panel" class="btn btn-primary">Back</a>
+            <button type="submit" class="btn btn-primary">Save</button>
 
         </form>
 

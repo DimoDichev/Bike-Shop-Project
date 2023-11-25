@@ -100,12 +100,14 @@ public class UserController {
 
     @DeleteMapping("/edit/{id}")
     public String deleteUser(@PathVariable Long id) {
+        // TODO: Show error for deleting last admin
         userService.deleteUser(id);
         return "redirect:/users/edit";
     }
 
     @PostMapping("/edit/{id}")
     public String editUserRole(@PathVariable Long id, @RequestParam String userRole) {
+        // TODO: Show error for changes last admin roles
         userService.changeRole(id, userRole);
         return "redirect:/users/edit";
     }
