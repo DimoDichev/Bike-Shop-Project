@@ -37,7 +37,11 @@ public class UserController {
             return "redirect:register";
         }
 
-        if (!userRegistrationBindingModel.getPassword().equals(userRegistrationBindingModel.getConfirmPassword())) {
+        boolean passwordNotEquals =
+                !userRegistrationBindingModel.getPassword()
+                        .equals(userRegistrationBindingModel.getConfirmPassword());
+
+        if (passwordNotEquals) {
             redirectAttributes.addFlashAttribute("userRegistrationBindingModel", userRegistrationBindingModel)
                     .addFlashAttribute("passwordNotEquals", true);
             return "redirect:register";
@@ -97,6 +101,12 @@ public class UserController {
     @DeleteMapping("/edit/{id}")
     public String deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
+        return "redirect:/users/edit";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String editUserRole(@PathVariable Long id, @RequestParam String userRole) {
+        userService.changeRole(id, userRole);
         return "redirect:/users/edit";
     }
 

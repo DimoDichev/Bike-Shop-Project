@@ -34,7 +34,10 @@ public class AppUserDetailsService implements UserDetailsService {
                 userEntity.getFirstName(),
                 userEntity.getLastName(),
                 userEntity.getEnabled(),
-                userEntity.getRoles().stream().map(AppUserDetailsService::mapAuthorities).toList()
+                userEntity.getRoles()
+                        .stream()
+                        .map(AppUserDetailsService::mapAuthorities)
+                        .toList()
         );
     }
 

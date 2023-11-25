@@ -14,7 +14,9 @@ public class ModelServiceImpl implements ModelService {
     private final ModelRepository modelRepository;
     private final ManufacturerRepository manufacturerRepository;
 
-    public ModelServiceImpl(ModelRepository modelRepository, ManufacturerRepository manufacturerRepository) {
+    public ModelServiceImpl(
+            ModelRepository modelRepository,
+            ManufacturerRepository manufacturerRepository) {
         this.modelRepository = modelRepository;
         this.manufacturerRepository = manufacturerRepository;
     }

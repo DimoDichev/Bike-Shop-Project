@@ -17,7 +17,10 @@ public class EmailServiceImpl implements EmailService {
     private final JavaMailSender javaMailSender;
     private final String bikeShopEmail;
 
-    public EmailServiceImpl(TemplateEngine templateEngine, JavaMailSender javaMailSender, @Value("${mail.bikeshop}") String bikeShopEmail) {
+    public EmailServiceImpl(
+            TemplateEngine templateEngine,
+            JavaMailSender javaMailSender,
+            @Value("${mail.bikeshop}") String bikeShopEmail) {
         this.templateEngine = templateEngine;
         this.javaMailSender = javaMailSender;
         this.bikeShopEmail = bikeShopEmail;

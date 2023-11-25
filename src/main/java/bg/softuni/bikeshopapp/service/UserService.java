@@ -12,6 +12,8 @@ public interface UserService {
 
     void activateUser(Long id);
 
+    void changeRole(Long id, String userRole);
+
     void deleteUser(Long id);
 
     boolean findIfEmailExist(String email);
