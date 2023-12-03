@@ -13,8 +13,6 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
     Optional<UserEntity> findByEmail(String email);
 
-    List<UserEntity> findAllByEnabledFalse();
-
     @Query(nativeQuery = true, value = "SELECT COUNT(*) FROM users " +
             "join users_roles on users.id = users_roles.user_entity_id " +
             "join bike_shop.roles r on users_roles.roles_id = r.id " +

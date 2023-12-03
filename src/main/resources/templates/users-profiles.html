@@ -8,7 +8,7 @@
 <header th:replace="~{/fragments/navigation}"></header>
 
 <div class="mainBlurWrapper">
-    <h1 class="mainHeader">Edit user</h1>
+    <h1 class="mainHeader">Users profiles</h1>
 
     <br>
 
@@ -16,9 +16,9 @@
 
         <p class="text-center text-white fw-bold">Users</p>
 
-        <div class="list-group">
+        <div class="card-body container-user">
 
-            <table class="table">
+            <table class="table table-striped table-hover">
                 <thead>
                 <tr>
                     <th scope="col">First name</th>
@@ -28,12 +28,12 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="u : ${notActivated}" th:object="${u}">
+                <tr th:each="u : ${allUsers}" th:object="${u}">
                     <td th:text="*{firstName}">First name</td>
                     <td th:text="*{lastName}">Last name</td>
                     <td th:text="*{email}">Email</td>
                     <td>
-                        <a th:href="@{/users/edit/{id}(id = *{id})}" class="btn btn-primary">Edit</a>
+                        <a th:href="@{/users/profiles/{id}(id = *{id})}" class="btn btn-primary">More</a>
                     </td>
                 </tr>
                 </tbody>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{/fragments/head}"></head>
+<body>
+
+<header th:replace="~{/fragments/navigation}"></header>
+
+<div class="mainBlurWrapper">
+    <h1 class="mainHeader">Message</h1>
+
+    <br>
+
+    <div class="center bg-dark rounded"
+         th:object="${message}">
+
+        <p class="text-center text-white fw-bold">From
+            <th:block th:text="*{email}"></th:block>
+        </p>
+
+        <div class="card-body container-user">
+            <div class="bg-white messages" th:text="*{message}">
+
+            </div>
+
+            <br>
+
+            <form th:method="POST"
+                  th:action="@{/admin/messages/answer/{id}(id = *{id})}">
+                <div class="mb-3">
+                    <label for="answer" class="form-label text-light">Answer</label>
+                    <textarea th:name="answer"
+                              class="form-control"
+                              id="answer"
+                              rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-info">Answer</button>
+            </form>
+
+            <br>
+
+            <a href="/admin/messages" class="btn btn-info">Back</a>
+
+            <br>
+            <br>
+
+            <form th:method="DELETE"
+                  th:action="@{/admin/messages/delete/{id}(id = *{id})}">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+<footer th:replace="~{fragments/footer}"></footer>
+</body>
+</html>

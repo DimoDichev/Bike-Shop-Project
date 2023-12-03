@@ -23,7 +23,7 @@ public class ManufacturerController {
 
     @GetMapping("/add")
     public String addManufacturer() {
-        return "add-manufacturer";
+        return "manufacturer-add";
     }
 
     @PostMapping("/add")

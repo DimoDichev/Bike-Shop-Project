@@ -23,13 +23,24 @@ spring:
   sql:
     init:
       mode: never
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+        starttls:
+          enable: true
 
 bikeShop:
   remember.me.key: ${REMEMBER_ME_KEY:secret}
 
 mail:
-  bikeshop: "bikeshop@bikes.com"
-  host: localhost
-  port: 1025
+  bikeshop: ${EMAIL}
+  host: smtp.gmail.com
+  port: 587
   username: ${MAIL_USERNAME}
   password: ${MAIL_PASSWORD}

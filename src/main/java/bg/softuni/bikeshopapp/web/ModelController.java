@@ -17,7 +17,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/models")
 public class ModelController {
 
-
     private final ManufacturerService manufacturerService;
     private final ModelService modelService;
 
@@ -29,7 +28,7 @@ public class ModelController {
     @GetMapping("/add")
     public String addModel(Model model) {
         model.addAttribute("manufacturers", manufacturerService.getAllManufacturerNames());
-        return "add-model";
+        return "model-add";
     }
 
     @PostMapping("/add")

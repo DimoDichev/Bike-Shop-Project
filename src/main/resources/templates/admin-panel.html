@@ -47,8 +47,7 @@
         <p class="text-center text-white fw-bold">User menu</p>
 
         <div class="list-group">
-            <a th:href="@{/users/activations}" class="list-group-item list-group-item-action">Activate users</a>
-            <a th:href="@{/users/edit}" class="list-group-item list-group-item-action">Edit users</a>
+            <a th:href="@{/users/profiles}" class="list-group-item list-group-item-action">Users details</a>
         </div>
 
     </div>
@@ -60,8 +59,8 @@
         <p class="text-center text-white fw-bold">Messages</p>
 
         <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action">Messages</a>
-
+            <a href="/admin/messages" class="list-group-item list-group-item-action">
+                Messages: <th:block th:text="${msgCount}"></th:block></a>
         </div>
 
     </div>

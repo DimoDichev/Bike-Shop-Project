@@ -2,21 +2,22 @@ package bg.softuni.bikeshopapp.web;
 
 import bg.softuni.bikeshopapp.model.binding.ContactUsBindingModel;
 import bg.softuni.bikeshopapp.service.ContactUsService;
+import bg.softuni.bikeshopapp.service.EmailService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class HomeController {
 
     private final ContactUsService contactUsService;
+    private final EmailService emailService;
 
-    public HomeController(ContactUsService contactUsService) {
+    public HomeController(ContactUsService contactUsService, EmailService emailService) {
         this.contactUsService = contactUsService;
+        this.emailService = emailService;
     }
 
     @GetMapping("/")
@@ -46,6 +47,17 @@ public class HomeController {
 
         contactUsService.send(contactUsBindingModel);
 
+        return "redirect:/";
+    }
+
+    @GetMapping("/forgotPassword")
+    public String forgotPassword() {
+        return "forgot-pass";
+    }
+
+    @PostMapping("/forgotPassword")
+    public String forgotPassword(@RequestParam String email) {
+        emailService.sendTempPassword(email);
         return "redirect:/";
     }
 

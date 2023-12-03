@@ -31,12 +31,17 @@ public class SecurityConfiguration implements WebMvcConfigurer {
                                         "/contact",
                                         "/users/register",
                                         "/users/login",
-                                        "/users/login-error").permitAll()
+                                        "/users/login-error",
+                                        "/forgotPassword").permitAll()
                                 .requestMatchers("/admin/**").hasRole(UserRoleEnum.ADMIN.name())
-                                .requestMatchers("/users/activations/**").hasRole(UserRoleEnum.ADMIN.name())
-                                .requestMatchers("/users/edit/**").hasRole(UserRoleEnum.ADMIN.name())
+                                .requestMatchers("/users/activations/**",
+                                        "/users/deactivation/**",
+                                        "/users/profiles",
+                                        "/users/profiles/edit/role/**",
+                                        "/users/profiles/edit/delete/**").hasRole(UserRoleEnum.ADMIN.name())
                                 .requestMatchers("/manufacturers/**").hasRole(UserRoleEnum.ADMIN.name())
                                 .requestMatchers("/models/**").hasRole(UserRoleEnum.ADMIN.name())
+                                .requestMatchers("/bikes/add").hasRole(UserRoleEnum.ADMIN.name())
                                 .anyRequest().authenticated()
                 ).formLogin(
                         formLogin -> {

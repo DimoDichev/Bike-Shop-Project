@@ -22,6 +22,7 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
 
                 <ul class="navbar-nav">
+
                     <th:block sec:authorize="!isAuthenticated()">
                         <li class="nav-item">
                             <a class="nav-link active" th:href="@{/users/login}">Login</a>
@@ -30,22 +31,31 @@
                             <a class="nav-link active" th:href="@{/users/register}">Register</a>
                         </li>
                     </th:block>
+
                     <li sec:authorize="!hasRole('ADMIN')" class="nav-item">
                         <a class="nav-link active" th:href="@{/contact}">Contact us</a>
                     </li>
+
                     <li class="nav-item">
                         <a class="nav-link active" th:href="@{/about}">About</a>
                     </li>
+
+                    <li class="nav-item" sec:authorize="isAuthenticated()">
+                        <a class="nav-link active" th:href="@{/users/profile}">Profile</a>
+                    </li>
+
                     <li class="nav-item" sec:authorize="hasRole('ADMIN')">
                         <a class="nav-link active" th:href="@{/admin/panel}">Admin</a>
                     </li>
+
                     <li class="nav-item" sec:authorize="isAuthenticated()">
                         <form class="logout-form"
-                                th:method="POST"
+                              th:method="POST"
                               th:action="@{/users/logout}">
                             <input class="logout-btn" type="submit" value="Logout">
                         </form>
                     </li>
+
                 </ul>
 
             </div>
@@ -60,7 +70,8 @@
             </button>
             <ul class="dropdown-menu">
                 <li th:each=" c : ${T(bg.softuni.bikeshopapp.model.enums.CategoryEnum).values()}">
-                    <a class="dropdown-item" th:value="${c}" th:text="${c}" th:href="@{/bikes/{category}(category=${c})}"></a>
+                    <a class="dropdown-item" th:value="${c}" th:text="${c}"
+                       th:href="@{/bikes/{category}(category=${c})}"></a>
                 </li>
                 <li>
                     <hr class="dropdown-divider">

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{/fragments/head}"></head>
+<body>
+
+<header th:replace="~{/fragments/navigation}"></header>
+
+<div class="mainBlurWrapper">
+    <h1 class="mainHeader">Messages</h1>
+
+    <br>
+
+    <div class="center bg-dark rounded">
+
+        <p class="text-center text-white fw-bold">Messages</p>
+
+        <div class="card-body container-user">
+
+            <table class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">From</th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="m : ${allMsg}" th:object="${m}">
+                    <td th:text="*{email}"></td>
+                    <td>
+                        <a th:href="@{/admin/messages/{id}(id = *{id})}" class="btn btn-primary">View message</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <br>
+
+            <a href="/admin/panel" class="btn btn-info">Back</a>
+
+        </div>
+
+    </div>
+
+</div>
+
+<footer th:replace="~{fragments/footer}"></footer>
+</body>
+</html>

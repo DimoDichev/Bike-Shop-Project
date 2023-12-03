@@ -26,19 +26,13 @@ public class MailConfiguration {
         jms.setUsername(username);
         jms.setPassword(password);
         jms.setDefaultEncoding("UTF-8");
-        jms.setJavaMailProperties(mailProperties());
+
+        Properties props = jms.getJavaMailProperties();
+        props.put("mail.transport.protocol", "smtp");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.debug", "true");
 
         return jms;
     }
-
-    private Properties mailProperties() {
-        Properties properties = new Properties();
-        properties.setProperty("mail.smtp.auth", "true");
-        properties.setProperty("mail.transport.protocol", "smtp");
-
-        return properties;
-    }
-
 }
-
-// TODO: Gmail

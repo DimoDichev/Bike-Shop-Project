@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head th:replace="~{/fragments/head}"></head>
 <body>
@@ -8,70 +9,169 @@
 <header th:replace="~{/fragments/navigation}"></header>
 
 <div class="mainBlurWrapper">
-    <h1 class="mainHeader">Edit user</h1>
 
     <br>
 
     <div class="center bg-dark rounded">
 
-        <p class="text-center text-white fw-bold">Users</p>
-
+        <p class="text-center text-white fw-bold">User</p>
 
         <div class="card" th:object="${userProfile}">
             <img src="/images/userLogo.com.png" class="card-img-top" alt="" style="width: 12rem;">
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">First name:
-                    <th:block th:text="*{firstName}"></th:block>
-                </li>
-                <li class="list-group-item">Last name:
-                    <th:block th:text="*{lastname}"></th:block>
-                </li>
-                <li class="list-group-item">Email:
-                    <th:block th:text="*{email}"></th:block>
-                </li>
-                <li class="list-group-item">Role:
-                    <th:block th:text="*{userRole}"></th:block>
-                </li>
-            </ul>
+
+            <!--            Change names-->
+
             <div class="card-body">
                 <form th:method="POST"
-                      th:action="@{/users/edit/{id}(id = *{id})}">
+                      th:action="@{/users/profiles/edit/names/{id}(id = *{id})}">
 
-                    <label class="text-center text-dark font-weight-bold" for="userRole">User role</label>
-                    <select id="userRole"
-                            class="form-control"
-                            th:name="userRole">
-                        <option th:each="r : ${T(bg.softuni.bikeshopapp.model.enums.UserRoleEnum).values()}"
-                                th:value="${r}"
-                                th:text="${r}">
-                        </option>
-                    </select>
+                    <h5>Change names</h5>
 
-                    <br>
+                    <div class="mb-3">
+                        <label for="firstName" class="form-label text-dark">First name</label>
+                        <input th:field="${userEditNamesBindingModel.firstName}"
+                               type="text"
+                               class="form-control"
+                               id="firstName"
+                               placeholder="Must be between 2 and 20 characters"
+                               required
+                               minlength="2"
+                               maxlength="20">
+                        <small class="bg-danger text-light" th:errors="${userEditNamesBindingModel.firstName}"></small>
+                    </div>
 
-                    <input type="submit" class="btn btn-info" value="Change role">
+                    <div class="mb-3">
+                        <label for="lastName" class="form-label text-dark">Last name</label>
+                        <input th:field="${userEditNamesBindingModel.lastName}"
+                               type="text"
+                               class="form-control"
+                               id="lastName"
+                               placeholder="Must be between 2 and 20 characters"
+                               required
+                               minlength="2"
+                               maxlength="20">
+                        <small class="bg-danger text-light" th:errors="${userEditNamesBindingModel.lastName}"></small>
+                    </div>
+
+                    <div>
+                        <button type="submit" class="btn btn-info">Save</button>
+                    </div>
 
                 </form>
             </div>
 
+            <!--            Change password-->
 
             <div class="card-body">
-                <form th:method="DELETE"
-                      th:action="@{/users/edit/{id}(id = *{id})}">
-                    <input type="submit" class="btn btn-info bg-danger" value="Delete user">
+                <form th:method="POST"
+                      th:action="@{/users/profiles/edit/password/{id}(id = *{id})}">
+
+                    <h5>Change password</h5>
+
+                    <div class="mb-3">
+                        <label for="password" class="form-label text-light">New password</label>
+                        <input th:field="${userEditPasswordBindingModel.newPassword}"
+                               type="password"
+                               class="form-control"
+                               id="password"
+                               placeholder="Password must be between 8 and 40 characters"
+                               required
+                               minlength="8"
+                               maxlength="40">
+                        <small class="bg-danger text-light"
+                               th:errors="${userEditPasswordBindingModel.newPassword}"></small>
+                        <small th:if="${passwordNotEquals}" class="bg-danger text-light">Password are not
+                            equals!</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="confirmNewPassword" class="form-label text-light">Confirm new password</label>
+                        <input th:field="${userEditPasswordBindingModel.confirmNewPassword}"
+                               type="password"
+                               class="form-control"
+                               id="confirmNewPassword"
+                               placeholder="Password must be between 8 and 40 characters"
+                               required
+                               minlength="8"
+                               maxlength="40">
+                        <small class="bg-danger text-light"
+                               th:errors="${userEditPasswordBindingModel.confirmNewPassword}"></small>
+                    </div>
+
+                    <div>
+                        <button type="submit" class="btn btn-info">Save</button>
+                    </div>
+
                 </form>
             </div>
+
+            <th:block sec:authorize="hasRole('ADMIN')">
+
+                <!--            Change role-->
+
+                <div class="card-body">
+                    <form th:method="POST"
+                          th:action="@{/users/profiles/edit/role/{id}(id = *{id})}">
+
+                        <label class="text-center text-dark font-weight-bold" for="userRole">User role</label>
+                        <select id="userRole"
+                                class="form-control"
+                                th:name="userRole">
+                            <option th:each="r : ${T(bg.softuni.bikeshopapp.model.enums.UserRoleEnum).values()}"
+                                    th:value="${r}"
+                                    th:text="${r}">
+                            </option>
+                        </select>
+                        <small th:if="${errorChangeRole}" class="bg-danger text-light">Operation unsuccessful</small>
+
+                        <br>
+
+                        <input type="submit" class="btn btn-info" value="Change role">
+
+                    </form>
+                </div>
+
+                <!--            Enabled or disabled user-->
+
+                <div class="card-body">
+                    <th:block th:if="*{enabled}">
+                        <form th:method="POST"
+                              th:action="@{/users/deactivation/{id}(id = *{id})}">
+                            <button type="submit" class="btn btn-info">Deactivate</button>
+                        </form>
+                    </th:block>
+
+                    <th:block th:unless="*{enabled}">
+                        <form th:method="POST"
+                              th:action="@{/users/activation/{id}(id = *{id})}">
+                            <button type="submit" class="btn btn-info">Activate</button>
+                        </form>
+                    </th:block>
+                    <small th:if="${errorDisables}" class="bg-danger text-light">Operation unsuccessful</small>
+                </div>
+
+                <!--            Delete user-->
+
+                <div class="card-body">
+                    <form th:method="DELETE"
+                          th:action="@{/users/profiles/edit/delete/{id}(id = *{id})}">
+                        <input type="submit" class="btn btn-info bg-danger" value="Delete user">
+                    </form>
+                    <small th:if="${errorDelete}" class="bg-danger text-light">Operation unsuccessful</small>
+                </div>
+
+            </th:block>
+
         </div>
 
         <br>
 
-        <a href="/users/edit" class="btn btn-info">Back</a>
-
+        <a th:href="@{/users/profiles/{id}(id = *{id})}" class="btn btn-info">Back</a>
 
     </div>
 
 </div>
 
 <footer th:replace="~{fragments/footer}"></footer>
-</body >
+</body>
 </html>

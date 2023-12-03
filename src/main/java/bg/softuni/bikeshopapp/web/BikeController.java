@@ -43,7 +43,7 @@ public class BikeController {
     @GetMapping("/add")
     public String addBike(Model model) {
         model.addAttribute("manufacturers", manufacturerService.getAllManufacturersWithModels());
-        return "add-bike";
+        return "bike-add";
     }
 
     @PostMapping("/add")

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{/fragments/head}"></head>
+<body>
+
+<header th:replace="~{/fragments/navigation}"></header>
+
+<div class="login-form container bg-dark">
+
+    <form th:method="POST"
+          th:action="@{/forgotPassword}">
+
+        <div class="mb-3">
+            <label for="email" class="form-label text-light">Email address</label>
+            <input class="form-control"
+                   id="email"
+                   type="email"
+                   name="email"
+                   th:value="${email}"
+                   th:name="email"
+                   required>
+        </div>
+
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-primary">Send new password</button>
+        </div>
+
+    </form>
+
+</div>
+
+<footer th:replace="~{fragments/footer}"></footer>
+</body>
+</html>

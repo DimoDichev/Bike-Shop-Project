@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="~{/fragments/head}"></head>
+<body>
+
+<header th:replace="~{/fragments/navigation}"></header>
+
+<div class="mainBlurWrapper">
+
+    <br>
+
+    <div class="center bg-dark rounded">
+
+        <p class="text-center text-white fw-bold">User</p>
+
+
+        <div class="card" th:object="${userProfile}">
+
+            <img src="/images/userLogo.com.png" class="card-img-top" alt="" style="width: 12rem;">
+
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">First name:
+                    <th:block th:text="*{firstName}"></th:block>
+                </li>
+                <li class="list-group-item">Last name:
+                    <th:block th:text="*{lastname}"></th:block>
+                </li>
+                <li class="list-group-item">Email:
+                    <th:block th:text="*{email}"></th:block>
+                </li>
+                <li class="list-group-item">Role:
+                    <th:block th:text="*{userRole}"></th:block>
+                </li>
+                <li sec:authorize="hasRole('ADMIN')" class="list-group-item">Enabled:
+                    <th:block th:text="*{enabled}"></th:block>
+                </li>
+            </ul>
+
+        </div>
+
+        <br>
+
+        <th:block sec:authorize="hasRole('ADMIN')">
+            <a href="/users/profiles" class="btn btn-info">Back</a>
+        </th:block>
+        <th:block sec:authorize="!hasRole('ADMIN')">
+            <a href="/" class="btn btn-info">Back</a>
+        </th:block>
+
+        <a th:href="@{/users/profiles/edit/{id}(id = *{id})}" class="btn btn-info">Edit</a>
+
+    </div>
+
+</div>
+
+<footer th:replace="~{fragments/footer}"></footer>
+</body >
+</html>
