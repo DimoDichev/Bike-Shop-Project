@@ -1,8 +1,11 @@
 package bg.softuni.bikeshopapp.web;
 
 import bg.softuni.bikeshopapp.model.binding.UserRegistrationBindingModel;
+import bg.softuni.bikeshopapp.model.entity.VerificationEntity;
 import bg.softuni.bikeshopapp.model.view.UserBaseViewModel;
 import bg.softuni.bikeshopapp.service.UserService;
+import bg.softuni.bikeshopapp.service.VerificationService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,9 +18,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class UserAuthenticationController {
 
     private final UserService userService;
+    private final VerificationService verificationService;
 
-    public UserAuthenticationController(UserService userService) {
+    public UserAuthenticationController(UserService userService, VerificationService verificationService) {
         this.userService = userService;
+        this.verificationService = verificationService;
     }
 
     @GetMapping("/register")
@@ -27,7 +32,9 @@ public class UserAuthenticationController {
 
     @PostMapping("/register")
     public String register(@Valid UserRegistrationBindingModel userRegistrationBindingModel,
-                           BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+                           BindingResult bindingResult,
+                           RedirectAttributes redirectAttributes,
+                           HttpServletRequest request) {
 
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("userRegistrationBindingModel", userRegistrationBindingModel)
@@ -53,9 +60,23 @@ public class UserAuthenticationController {
             return "redirect:register";
         }
 
-        userService.register(userRegistrationBindingModel);
+        userService.register(userRegistrationBindingModel, request);
 
         return "redirect:login";
+    }
+
+    @GetMapping("/register/verify")
+    public String verification(@RequestParam("token") String token, Model model) {
+        VerificationEntity verifyToken = verificationService.findByToken(token);
+
+        if (verifyToken == null || verifyToken.getUser().getEnabled()) {
+            return "user-login";
+        }
+
+        userService.validateToken(token);
+        model.addAttribute("message", true);
+
+        return "user-login";
     }
 
     @GetMapping("/login")
@@ -64,7 +85,22 @@ public class UserAuthenticationController {
     }
 
     @PostMapping("/login-error")
-    public String onFailure(@ModelAttribute("email") String email, Model model) {
+    public String onFailure(@ModelAttribute("email") String email, Model model, HttpServletRequest request) {
+        boolean emailExist = userService.findIfEmailExist(email);
+        boolean isActivate = userService.checkActivationStatus(email);
+        boolean tokenExpired = verificationService.checkForToken(email);
+
+        if (emailExist && !isActivate && tokenExpired) {
+            verificationService.reSendVerifyEmail(email, request);
+            model.addAttribute("resendToken", true);
+            return "user-login";
+        }
+
+        if (emailExist && !isActivate) {
+            model.addAttribute("notActivated", true);
+            return "user-login";
+        }
+
         model.addAttribute("email", email);
         model.addAttribute("bad_credentials", true);
         return "user-login";

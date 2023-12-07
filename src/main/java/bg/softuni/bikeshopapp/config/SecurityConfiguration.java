@@ -29,7 +29,7 @@ public class SecurityConfiguration implements WebMvcConfigurer {
                                 .requestMatchers("/",
                                         "/about",
                                         "/contact",
-                                        "/users/register",
+                                        "/users/register/**",
                                         "/users/login",
                                         "/users/login-error",
                                         "/forgotPassword").permitAll()

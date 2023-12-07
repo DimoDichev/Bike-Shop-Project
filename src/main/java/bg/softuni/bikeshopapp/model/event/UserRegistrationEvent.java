@@ -1,23 +1,24 @@
 package bg.softuni.bikeshopapp.model.event;
 
+import bg.softuni.bikeshopapp.model.entity.UserEntity;
 import org.springframework.context.ApplicationEvent;
 
 public class UserRegistrationEvent extends ApplicationEvent {
 
-    private final String userEmail;
-    private final String username;
+    private UserEntity userEntity;
+    private String appUrl;
 
-    public UserRegistrationEvent(Object source, String userEmail, String username) {
-        super(source);
-        this.userEmail = userEmail;
-        this.username = username;
+    public UserRegistrationEvent(UserEntity user, String appUrl) {
+        super(user);
+        this.userEntity = user;
+        this.appUrl = appUrl;
     }
 
-    public String getUserEmail() {
-        return userEmail;
+    public UserEntity getUserEntity() {
+        return userEntity;
     }
 
-    public String getUsername() {
-        return username;
+    public String getAppUrl() {
+        return appUrl;
     }
 }

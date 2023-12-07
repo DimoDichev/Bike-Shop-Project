@@ -16,7 +16,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @RequestMapping("/models")
 public class ModelController {
-
     private final ManufacturerService manufacturerService;
     private final ModelService modelService;
 

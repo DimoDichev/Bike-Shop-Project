@@ -19,12 +19,10 @@ import static bg.softuni.bikeshopapp.exception.ErrorMessages.*;
 public class ContactUsServiceImpl implements ContactUsService {
 
     private final ContactUsRepository contactUsRepository;
-    private final EmailService emailService;
     private final ModelMapper modelMapper;
 
-    public ContactUsServiceImpl(ContactUsRepository contactUsRepository, EmailService emailService, ModelMapper modelMapper) {
+    public ContactUsServiceImpl(ContactUsRepository contactUsRepository, ModelMapper modelMapper) {
         this.contactUsRepository = contactUsRepository;
-        this.emailService = emailService;
         this.modelMapper = modelMapper;
     }
 

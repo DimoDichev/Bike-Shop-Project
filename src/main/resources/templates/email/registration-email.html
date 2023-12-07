@@ -9,6 +9,13 @@
     <title>Hello</title>
 </head>
 <body>
-    <h1>Welcome to Bike shop <th:block th:text="*{fullName}"></th:block></h1>
+<h1>Welcome to Bike shop
+    <th:block th:text="*{name}"></th:block>
+</h1>
+<h2>For activation follow the link</h2>
+<a th:href="${link}">Activate profile</a>
+<br>
+<small>The link is active until 00:00 h</small>
+<small>If you have an activation problem, contact us to activate the account</small>
 </body>
 </html>

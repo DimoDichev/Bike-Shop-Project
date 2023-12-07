@@ -1,6 +1,5 @@
 package bg.softuni.bikeshopapp.service.impl;
 
-import bg.softuni.bikeshopapp.exception.ErrorMessages;
 import bg.softuni.bikeshopapp.exception.ObjectNotFoundException;
 import bg.softuni.bikeshopapp.model.AppUserDetails;
 import bg.softuni.bikeshopapp.model.binding.UserEditNamesBindingModel;
@@ -8,18 +7,21 @@ import bg.softuni.bikeshopapp.model.binding.UserEditPasswordBindingModel;
 import bg.softuni.bikeshopapp.model.binding.UserRegistrationBindingModel;
 import bg.softuni.bikeshopapp.model.entity.UserEntity;
 import bg.softuni.bikeshopapp.model.entity.UserRoleEntity;
+import bg.softuni.bikeshopapp.model.entity.VerificationEntity;
 import bg.softuni.bikeshopapp.model.enums.UserRoleEnum;
 import bg.softuni.bikeshopapp.model.event.UserRegistrationEvent;
 import bg.softuni.bikeshopapp.model.view.UserBaseViewModel;
 import bg.softuni.bikeshopapp.model.view.UserViewModel;
 import bg.softuni.bikeshopapp.repository.UserRepository;
 import bg.softuni.bikeshopapp.repository.UserRoleRepository;
+import bg.softuni.bikeshopapp.repository.VerificationRepository;
 import bg.softuni.bikeshopapp.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Set;
@@ -32,6 +34,7 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final UserRoleRepository userRoleRepository;
+    private final VerificationRepository verificationRepository;
     private final ModelMapper modelMapper;
     private final ApplicationEventPublisher applicationEventPublisher;
     private final PasswordEncoder passwordEncoder;
@@ -39,10 +42,11 @@ public class UserServiceImpl implements UserService {
     public UserServiceImpl(
             UserRepository userRepository,
             UserRoleRepository userRoleRepository,
-            ModelMapper modelMapper,
+            VerificationRepository verificationRepository, ModelMapper modelMapper,
             ApplicationEventPublisher applicationEventPublisher, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.userRoleRepository = userRoleRepository;
+        this.verificationRepository = verificationRepository;
         this.modelMapper = modelMapper;
         this.applicationEventPublisher = applicationEventPublisher;
         this.passwordEncoder = passwordEncoder;
@@ -50,18 +54,17 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public void register(UserRegistrationBindingModel userRegistrationBindingModel) {
-        userRepository
+    public void register(UserRegistrationBindingModel userRegistrationBindingModel, HttpServletRequest request) {
+        UserEntity user = userRepository
                 .save(modelMapper.map(userRegistrationBindingModel, UserEntity.class));
 
         applicationEventPublisher
                 .publishEvent(new UserRegistrationEvent(
-                        "UserService",
-                        userRegistrationBindingModel.getEmail(),
-                        userRegistrationBindingModel.getFullName()));
+                        user,appUrl(request)));
     }
 
     @Override
+    @Transactional
     public boolean deleteUser(Long id) {
         UserEntity user = getUserForEdit(id);
 
@@ -69,6 +72,7 @@ public class UserServiceImpl implements UserService {
             return false;
         }
 
+        verificationRepository.deleteByUser(user);
         userRepository.deleteById(id);
         return true;
     }
@@ -179,10 +183,46 @@ public class UserServiceImpl implements UserService {
         return loggedUser.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"));
     }
 
+    @Override
+    public void saveToken(UserEntity user, String token) {
+        VerificationEntity verificationToken = new VerificationEntity(token, user);
+        verificationRepository.save(verificationToken);
+    }
+
+    @Override
+    public void validateToken(String token) {
+        VerificationEntity verifyToken = verificationRepository.findByToken(token);
+
+        if (verifyToken == null) {
+            return;
+        }
+
+        UserEntity user = verifyToken.getUser();
+        user.setEnabled(true);
+        userRepository.save(user);
+    }
+
+    @Override
+    public boolean checkActivationStatus(String email) {
+        UserEntity user = userRepository
+                .findByEmail(email)
+                .orElse(null);
+
+        if (user == null || !user.getEnabled()) {
+            return false;
+        }
+
+        return true;
+    }
+
     private UserEntity getUserForEdit(Long id) {
         UserEntity user = userRepository
                 .findById(id)
-                .orElseThrow(() -> new ObjectNotFoundException(String.format(OBJECT_NOT_FOUND, id)));
+                .orElse(null);
+
+        if (user == null) {
+            return null;
+        }
 
         boolean isUserAdmin = user.getRoles().stream().anyMatch(r -> r.getRole().equals(UserRoleEnum.ADMIN));
         boolean isOnlyOneAdmin = userRepository.findAllAdminCount() <= 1;
@@ -204,5 +244,13 @@ public class UserServiceImpl implements UserService {
         } else {
             return "USER";
         }
+    }
+
+    private String appUrl(HttpServletRequest request) {
+        return "http://"
+                + request.getServerName()
+                + ":"
+                + request.getServerPort()
+                + request.getContextPath();
     }
 }

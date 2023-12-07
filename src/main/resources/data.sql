@@ -7,7 +7,7 @@ VALUES (1, 'ADMIN'),
 
 -- admin user
 insert into users(id, email, first_name, last_name, password, enabled)
-VALUES (1, 'admin@admin.com', 'Admin', 'Adminov',
+VALUES (1, 'dzdichev@gmail.com', 'Admin', 'Adminov',
         'b6556f0100f917a441fa338792514eb78796f20f57185b530ddcce445bdca2d742c8ffb88d1f9b0323ad6a7823e6ae08', true);
 
 insert into users_roles(user_entity_id, roles_id)

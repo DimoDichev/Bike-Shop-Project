@@ -33,7 +33,7 @@ public class ApplicationBeanConfiguration {
 
         // UserRegistrationBindingModel -> UserEntity
         Provider<UserEntity> newUserProvider = req ->  new UserEntity()
-            .setEnabled(true)
+            .setEnabled(false)
             .setRoles(Set.of(userRoleRepository.findByRole(UserRoleEnum.USER)));
 
 
