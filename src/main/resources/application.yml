@@ -44,3 +44,8 @@ mail:
   port: 587
   username: ${MAIL_USERNAME}
   password: ${MAIL_PASSWORD}
+
+cloudinary:
+  cloud_name: ${CLOUD_NAME}
+  api_key: ${API_KEY}
+  api_secret: ${SECRET}
