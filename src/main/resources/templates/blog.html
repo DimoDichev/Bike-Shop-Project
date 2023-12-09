@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="~{/fragments/head}"></head>
+<body onload="load_pic()">
+
+<header th:replace="~{/fragments/navigation}"></header>
+
+<div class="mainBlurWrapper" >
+
+    <h1 class="mainHeader">Blog</h1>
+
+    <div class="container blogContainer">
+
+        <div id="reconstruction"></div>
+
+    </div>
+
+</div>
+
+<footer th:replace="~{fragments/footer}"></footer>
+
+<script>
+    async function load_pic() {
+
+        const url = 'http://localhost:8080/blog/reconstruction'
+
+        const options = {
+            method: "GET"
+        }
+
+        let response = await fetch(url, options)
+
+        if (response.status === 200) {
+
+            const imageBlob = await response.blob()
+            const imageObjectURL = URL.createObjectURL(imageBlob);
+
+            const image = document.createElement('img')
+            image.src = imageObjectURL
+
+            const container = document.getElementById("reconstruction")
+            container.append(image)
+            console.log(image.src)
+        }
+        else {
+            console.log("HTTP-Error: " + response.status)
+        }
+    }
+</script>
+
+</body>
+
+</html>

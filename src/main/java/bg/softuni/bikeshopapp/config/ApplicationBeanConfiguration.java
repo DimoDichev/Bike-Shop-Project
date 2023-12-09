@@ -32,9 +32,9 @@ public class ApplicationBeanConfiguration {
         ModelMapper modelMapper = new ModelMapper();
 
         // UserRegistrationBindingModel -> UserEntity
-        Provider<UserEntity> newUserProvider = req ->  new UserEntity()
-            .setEnabled(false)
-            .setRoles(Set.of(userRoleRepository.findByRole(UserRoleEnum.USER)));
+        Provider<UserEntity> newUserProvider = req -> new UserEntity()
+                .setEnabled(false)
+                .setRoles(Set.of(userRoleRepository.findByRole(UserRoleEnum.USER)));
 
 
         Converter<String, String> passwordConverter

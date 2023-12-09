@@ -12,6 +12,7 @@
 
     <section class="text-center text-light">
 
+        <p hidden="hidden" id="bikeId" th:text="*{id}"></p>
         <h2 th:text="*{manufacturer}"></h2>
         <h3 th:text="*{model}"></h3>
 
@@ -44,7 +45,38 @@
                 <th:block th:text="*{price}"></th:block>
                 Euro
             </p>
+
             <a href="/contact" class="btn btn-primary">To order, contact us</a>
+
+            <th:block sec:authorize="hasRole('ADMIN')">
+
+                <form th:method="POST"
+                      th:action="@{/bikes/uploadImg/{id}(id = ${bikeDetails.id})}"
+                      th:value="pictures"
+                      th:object="${uploadPicturesBindingModel}"
+                      name="pictures"
+                      id = "pictures"
+                      enctype="multipart/form-data">
+                    <label for="image">Upload picture</label>
+                    <input type="file" id="image" class="form-control" name="pictures" />
+                    <br>
+                    <button type="submit" class="btn btn-info">Upload picture</button>
+                </form>
+                <small class="bg-danger text-light" th:if="${errorUploadImg}">Error upload image</small>
+
+<!--                Delete-->
+
+                <form th:method="DELETE"
+                      th:action="@{/bikes/delete/{id}(id = *{id})}">
+                    <br>
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+
+            </th:block>
+
+            <br>
+
+            <a href="/bikes/all" class="btn btn-info">Back</a>
         </div>
 
 

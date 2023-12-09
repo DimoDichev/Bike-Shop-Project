@@ -31,3 +31,7 @@ mail:
   port: 1025
   username: ${MAIL_USERNAME:root}
   password: ${MAIL_PASSWORD:1234}
+cloudinary:
+  cloud_name: ${CLOUD_NAME:user}
+  api_key: ${API_KEY:topSecret}
+  api_secret: ${SECRET:topSecret}

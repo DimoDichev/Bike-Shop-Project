@@ -1,6 +1,7 @@
 package bg.softuni.bikeshopapp.web;
 
 import bg.softuni.bikeshopapp.model.binding.BikeAddBindingModel;
+import bg.softuni.bikeshopapp.model.binding.UploadPicturesBindingModel;
 import bg.softuni.bikeshopapp.service.BikeService;
 import bg.softuni.bikeshopapp.service.ManufacturerService;
 import jakarta.validation.Valid;
@@ -9,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.io.IOException;
 
 @Controller
 @RequestMapping("/bikes")
@@ -62,9 +65,37 @@ public class BikeController {
         return "redirect:/admin/panel";
     }
 
+    @DeleteMapping("/delete/{id}")
+    public String deleteBike(@PathVariable Long id) throws IOException {
+        bikeService.deleteBike(id);
+        return "redirect:/bikes/all";
+    }
+
+    @PostMapping("/uploadImg/{id}")
+    public String uploadPicture(@PathVariable String id,
+                                @Valid UploadPicturesBindingModel uploadPicturesBindingModel,
+                                BindingResult bindingResult,
+                                RedirectAttributes redirectAttributes) throws IOException {
+
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("uploadPicturesBindingModel", uploadPicturesBindingModel)
+                    .addFlashAttribute("errorUploadImg", true);
+            return "redirect:/bikes/details/" + id;
+        }
+
+        bikeService.updateBikePictures(uploadPicturesBindingModel);
+
+        return "redirect:/bikes/details/" + id;
+    }
+
     @ModelAttribute
     public BikeAddBindingModel bikeAddBindingModel() {
         return new BikeAddBindingModel();
+    }
+
+    @ModelAttribute
+    public UploadPicturesBindingModel uploadPicturesBindingModel() {
+        return new UploadPicturesBindingModel();
     }
 
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 public class BikeDetailsViewModel {
 
+    private Long id;
     private String manufacturer;
     private String model;
     private String size;
@@ -14,6 +15,15 @@ public class BikeDetailsViewModel {
     private Double price;
 
     public BikeDetailsViewModel() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public BikeDetailsViewModel setId(Long id) {
+        this.id = id;
+        return this;
     }
 
     public String getManufacturer() {

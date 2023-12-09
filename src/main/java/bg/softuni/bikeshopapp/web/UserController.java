@@ -37,13 +37,13 @@ public class UserController {
     }
 
     @GetMapping("/profile")
-    public String userProfile(@ AuthenticationPrincipal AppUserDetails loggedUser) {
+    public String userProfile(@AuthenticationPrincipal AppUserDetails loggedUser) {
 
         return "redirect:/users/profiles/" + loggedUser.getId();
     }
 
     @GetMapping("/profiles/{id}")
-    public String profileDetails(@ AuthenticationPrincipal AppUserDetails loggedUser,
+    public String profileDetails(@AuthenticationPrincipal AppUserDetails loggedUser,
                                  @PathVariable Long id,
                                  Model model) {
         if (!userService.checkPromiseToEdit(loggedUser, id)) {

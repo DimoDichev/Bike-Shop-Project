@@ -26,6 +26,8 @@ dependencies {
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
 	implementation group: 'org.modelmapper', name: 'modelmapper', version: '3.2.0'
 	implementation group: 'com.cloudinary', name: 'cloudinary-http44', version: '1.36.0'
+	implementation group: 'commons-io', name: 'commons-io', version: '2.15.1'
+
 
 
 	runtimeOnly 'com.mysql:mysql-connector-j'
