@@ -24,6 +24,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -81,7 +82,7 @@ class BikeServiceImplTest {
                 .setFrameMaterial(FrameMaterialEnum.STEEL)
                 .setWheelSize("29"));
 
-        Optional<BikeEntity> bike = bikeRepository.findById(1L);
+        Optional<BikeEntity> bike = bikeRepository.findAll().stream().findFirst();
 
         assertTrue(bike.isPresent());
         assertEquals(1, bikeRepository.findAll().size());
@@ -91,6 +92,15 @@ class BikeServiceImplTest {
         assertEquals(FrameMaterialEnum.STEEL, bike.get().getFrameMaterial());
         assertEquals("29", bike.get().getWheelSize());
         assertEquals(model.getName(), bike.get().getModel().getName());
+    }
+
+    @Test
+    void delete() throws IOException {
+        initData();
+        assertEquals(10, bikeRepository.findAll().size());
+        bikeServiceToTest.deleteBike(1L);
+        assertEquals(9, bikeRepository.findAll().size());
+
     }
 
     @Test
@@ -140,7 +150,7 @@ class BikeServiceImplTest {
 
     private void initData() {
         ModelEntity model = modelRepository.findByName("Model").orElse(null);
-        for (int i = 0; i <10; i++) {
+        for (int i = 1; i <=10; i++) {
             bikeRepository.save(new BikeEntity()
                     .setModel(model)
                     .setDescription("TestDescription")

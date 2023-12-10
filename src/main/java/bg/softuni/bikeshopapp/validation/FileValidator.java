@@ -4,7 +4,6 @@ import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.lang.annotation.Annotation;
 import java.util.Arrays;
 import java.util.List;
 

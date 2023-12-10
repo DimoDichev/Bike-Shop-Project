@@ -1,6 +1,5 @@
 package bg.softuni.bikeshopapp.model.binding;
 
-import bg.softuni.bikeshopapp.model.entity.PictureEntity;
 import bg.softuni.bikeshopapp.model.enums.CategoryEnum;
 import bg.softuni.bikeshopapp.model.enums.FrameMaterialEnum;
 import bg.softuni.bikeshopapp.model.enums.FrameSizeEnum;
