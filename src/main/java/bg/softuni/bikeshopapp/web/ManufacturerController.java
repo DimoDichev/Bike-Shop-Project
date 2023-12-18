@@ -1,6 +1,6 @@
 package bg.softuni.bikeshopapp.web;
 
-import bg.softuni.bikeshopapp.model.binding.ManufacturerAddBindingModel;
+import bg.softuni.bikeshopapp.model.dto.ManufacturerAddBindingModel;
 import bg.softuni.bikeshopapp.service.ManufacturerService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;

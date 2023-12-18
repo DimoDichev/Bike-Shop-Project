@@ -1,8 +1,8 @@
 package bg.softuni.bikeshopapp.service.impl;
 
 import bg.softuni.bikeshopapp.exception.ObjectNotFoundException;
-import bg.softuni.bikeshopapp.model.binding.BikeAddBindingModel;
-import bg.softuni.bikeshopapp.model.binding.UploadPicturesBindingModel;
+import bg.softuni.bikeshopapp.model.dto.BikeAddBindingModel;
+import bg.softuni.bikeshopapp.model.dto.UploadPicturesBindingModel;
 import bg.softuni.bikeshopapp.model.entity.BikeEntity;
 import bg.softuni.bikeshopapp.model.entity.ModelEntity;
 import bg.softuni.bikeshopapp.model.entity.PictureEntity;

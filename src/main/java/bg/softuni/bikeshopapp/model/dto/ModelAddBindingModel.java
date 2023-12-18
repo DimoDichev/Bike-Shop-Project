@@ -1,4 +1,4 @@
-package bg.softuni.bikeshopapp.model.binding;
+package bg.softuni.bikeshopapp.model.dto;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;

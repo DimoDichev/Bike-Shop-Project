@@ -28,9 +28,12 @@ public class EmailServiceImpl implements EmailService {
     private final String bikeShopEmail;
 
     public EmailServiceImpl(
-            UserRepository userRepository, PasswordEncoder passwordEncoder, TemplateEngine templateEngine,
+            UserRepository userRepository,
+            PasswordEncoder passwordEncoder,
+            TemplateEngine templateEngine,
             JavaMailSender javaMailSender,
-            ContactUsRepository contactUsRepository, @Value("${mail.bikeshop}") String bikeShopEmail) {
+            ContactUsRepository contactUsRepository,
+            @Value("${mail.bikeshop}") String bikeShopEmail) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.templateEngine = templateEngine;

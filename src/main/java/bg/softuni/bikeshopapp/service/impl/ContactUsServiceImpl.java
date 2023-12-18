@@ -1,12 +1,11 @@
 package bg.softuni.bikeshopapp.service.impl;
 
 import bg.softuni.bikeshopapp.exception.ObjectNotFoundException;
-import bg.softuni.bikeshopapp.model.binding.ContactUsBindingModel;
+import bg.softuni.bikeshopapp.model.dto.ContactUsBindingModel;
 import bg.softuni.bikeshopapp.model.entity.ContactUsEntity;
 import bg.softuni.bikeshopapp.model.view.ContactUsView;
 import bg.softuni.bikeshopapp.repository.ContactUsRepository;
 import bg.softuni.bikeshopapp.service.ContactUsService;
-import bg.softuni.bikeshopapp.service.EmailService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 

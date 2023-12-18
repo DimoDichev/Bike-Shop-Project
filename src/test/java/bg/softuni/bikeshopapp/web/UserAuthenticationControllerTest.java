@@ -1,6 +1,5 @@
 package bg.softuni.bikeshopapp.web;
 
-import bg.softuni.bikeshopapp.model.binding.UserRegistrationBindingModel;
 import bg.softuni.bikeshopapp.model.entity.UserEntity;
 import bg.softuni.bikeshopapp.model.entity.UserRoleEntity;
 import bg.softuni.bikeshopapp.model.entity.VerificationEntity;

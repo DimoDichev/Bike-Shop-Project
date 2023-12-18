@@ -1,6 +1,6 @@
 package bg.softuni.bikeshopapp.service;
 
-import bg.softuni.bikeshopapp.model.binding.ContactUsBindingModel;
+import bg.softuni.bikeshopapp.model.dto.ContactUsBindingModel;
 import bg.softuni.bikeshopapp.model.view.ContactUsView;
 
 import java.util.List;

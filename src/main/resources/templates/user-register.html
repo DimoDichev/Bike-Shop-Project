@@ -10,7 +10,7 @@
 <div class="register-form container bg-dark">
 
     <form class="was-validated needs-validation"
-          th:object="${userRegistrationBindingModel}"
+          th:object="${userRegistrationDto}"
           th:method="POST"
           th:action="@{/users/register}">
 

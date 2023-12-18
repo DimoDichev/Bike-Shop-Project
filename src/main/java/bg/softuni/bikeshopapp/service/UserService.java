@@ -1,9 +1,9 @@
 package bg.softuni.bikeshopapp.service;
 
 import bg.softuni.bikeshopapp.model.AppUserDetails;
-import bg.softuni.bikeshopapp.model.binding.UserEditNamesBindingModel;
-import bg.softuni.bikeshopapp.model.binding.UserEditPasswordBindingModel;
-import bg.softuni.bikeshopapp.model.binding.UserRegistrationBindingModel;
+import bg.softuni.bikeshopapp.model.dto.UserEditNamesBindingModel;
+import bg.softuni.bikeshopapp.model.dto.UserEditPasswordBindingModel;
+import bg.softuni.bikeshopapp.model.dto.UserRegistrationDto;
 import bg.softuni.bikeshopapp.model.entity.UserEntity;
 import bg.softuni.bikeshopapp.model.view.UserBaseViewModel;
 import bg.softuni.bikeshopapp.model.view.UserViewModel;
@@ -13,7 +13,7 @@ import java.util.List;
 
 public interface UserService {
 
-    void register(UserRegistrationBindingModel userRegistrationBindingModel, HttpServletRequest request);
+    void register(UserRegistrationDto userRegistrationDto, HttpServletRequest request);
 
     boolean deleteUser(Long id);
 

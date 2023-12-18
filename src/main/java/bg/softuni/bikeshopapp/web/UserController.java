@@ -2,9 +2,9 @@ package bg.softuni.bikeshopapp.web;
 
 import bg.softuni.bikeshopapp.exception.ForbiddenException;
 import bg.softuni.bikeshopapp.model.AppUserDetails;
-import bg.softuni.bikeshopapp.model.binding.UserEditNamesBindingModel;
-import bg.softuni.bikeshopapp.model.binding.UserEditPasswordBindingModel;
-import bg.softuni.bikeshopapp.model.binding.UserRegistrationBindingModel;
+import bg.softuni.bikeshopapp.model.dto.UserEditNamesBindingModel;
+import bg.softuni.bikeshopapp.model.dto.UserEditPasswordBindingModel;
+import bg.softuni.bikeshopapp.model.dto.UserRegistrationDto;
 import bg.softuni.bikeshopapp.model.view.UserBaseViewModel;
 import bg.softuni.bikeshopapp.service.UserService;
 import jakarta.validation.Valid;
@@ -137,8 +137,8 @@ public class UserController {
     }
 
     @ModelAttribute
-    public UserRegistrationBindingModel userRegistrationBindingModel() {
-        return new UserRegistrationBindingModel();
+    public UserRegistrationDto userRegistrationBindingModel() {
+        return new UserRegistrationDto();
     }
 
     @ModelAttribute

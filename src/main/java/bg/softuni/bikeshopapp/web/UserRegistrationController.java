@@ -1,6 +1,6 @@
 package bg.softuni.bikeshopapp.web;
 
-import bg.softuni.bikeshopapp.model.binding.UserRegistrationBindingModel;
+import bg.softuni.bikeshopapp.model.dto.UserRegistrationDto;
 import bg.softuni.bikeshopapp.model.entity.VerificationEntity;
 import bg.softuni.bikeshopapp.service.UserService;
 import bg.softuni.bikeshopapp.service.VerificationService;
@@ -30,39 +30,39 @@ public class UserRegistrationController {
     }
 
     @PostMapping("/register")
-    public String register(@Valid UserRegistrationBindingModel userRegistrationBindingModel,
+    public String register(@Valid UserRegistrationDto userRegistrationDto,
                            BindingResult bindingResult,
                            RedirectAttributes redirectAttributes,
                            HttpServletRequest request) {
 
         if (bindingResult.hasErrors()) {
             redirectAttributes
-                    .addFlashAttribute("userRegistrationBindingModel", userRegistrationBindingModel)
+                    .addFlashAttribute("userRegistrationBindingModel", userRegistrationDto)
                     .addFlashAttribute("org.springframework.validation.BindingResult.userRegistrationBindingModel", bindingResult);
             return "redirect:register";
         }
 
         boolean passwordNotEquals =
-                !userRegistrationBindingModel.getPassword()
-                        .equals(userRegistrationBindingModel.getConfirmPassword());
+                !userRegistrationDto.getPassword()
+                        .equals(userRegistrationDto.getConfirmPassword());
 
         if (passwordNotEquals) {
             redirectAttributes
-                    .addFlashAttribute("userRegistrationBindingModel", userRegistrationBindingModel)
+                    .addFlashAttribute("userRegistrationBindingModel", userRegistrationDto)
                     .addFlashAttribute("passwordNotEquals", true);
             return "redirect:register";
         }
 
-        boolean emailExist = userService.findIfEmailExist(userRegistrationBindingModel.getEmail());
+        boolean emailExist = userService.findIfEmailExist(userRegistrationDto.getEmail());
 
         if (emailExist) {
             redirectAttributes
-                    .addFlashAttribute("userRegistrationBindingModel", userRegistrationBindingModel)
+                    .addFlashAttribute("userRegistrationBindingModel", userRegistrationDto)
                     .addFlashAttribute("emailExist", true);
             return "redirect:register";
         }
 
-        userService.register(userRegistrationBindingModel, request);
+        userService.register(userRegistrationDto, request);
 
         return "redirect:login";
     }
@@ -82,8 +82,8 @@ public class UserRegistrationController {
     }
 
     @ModelAttribute
-    public UserRegistrationBindingModel userRegistrationBindingModel() {
-        return new UserRegistrationBindingModel();
+    public UserRegistrationDto userRegistrationBindingModel() {
+        return new UserRegistrationDto();
     }
 
 }

@@ -1,6 +1,6 @@
 package bg.softuni.bikeshopapp.config;
 
-import bg.softuni.bikeshopapp.model.binding.UserRegistrationBindingModel;
+import bg.softuni.bikeshopapp.model.dto.UserRegistrationDto;
 import bg.softuni.bikeshopapp.model.entity.UserEntity;
 import bg.softuni.bikeshopapp.model.enums.UserRoleEnum;
 import bg.softuni.bikeshopapp.repository.UserRepository;
@@ -43,10 +43,10 @@ public class ApplicationBeanConfiguration {
                 : passwordEncoder.encode(ctx.getSource());
 
         modelMapper
-                .createTypeMap(UserRegistrationBindingModel.class, UserEntity.class)
+                .createTypeMap(UserRegistrationDto.class, UserEntity.class)
                 .setProvider(newUserProvider)
                 .addMappings(mapper -> mapper.using(passwordConverter)
-                        .map(UserRegistrationBindingModel::getPassword, UserEntity::setPassword));
+                        .map(UserRegistrationDto::getPassword, UserEntity::setPassword));
 
         return modelMapper;
     }

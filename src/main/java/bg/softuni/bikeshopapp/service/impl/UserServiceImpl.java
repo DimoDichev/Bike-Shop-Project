@@ -2,9 +2,9 @@ package bg.softuni.bikeshopapp.service.impl;
 
 import bg.softuni.bikeshopapp.exception.ObjectNotFoundException;
 import bg.softuni.bikeshopapp.model.AppUserDetails;
-import bg.softuni.bikeshopapp.model.binding.UserEditNamesBindingModel;
-import bg.softuni.bikeshopapp.model.binding.UserEditPasswordBindingModel;
-import bg.softuni.bikeshopapp.model.binding.UserRegistrationBindingModel;
+import bg.softuni.bikeshopapp.model.dto.UserEditNamesBindingModel;
+import bg.softuni.bikeshopapp.model.dto.UserEditPasswordBindingModel;
+import bg.softuni.bikeshopapp.model.dto.UserRegistrationDto;
 import bg.softuni.bikeshopapp.model.entity.UserEntity;
 import bg.softuni.bikeshopapp.model.entity.UserRoleEntity;
 import bg.softuni.bikeshopapp.model.entity.VerificationEntity;
@@ -54,13 +54,12 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public void register(UserRegistrationBindingModel userRegistrationBindingModel, HttpServletRequest request) {
+    public void register(UserRegistrationDto userRegistrationDto, HttpServletRequest request) {
         UserEntity user = userRepository
-                .save(modelMapper.map(userRegistrationBindingModel, UserEntity.class));
+                .save(modelMapper.map(userRegistrationDto, UserEntity.class));
 
         applicationEventPublisher
-                .publishEvent(new UserRegistrationEvent(
-                        user,appUrl(request)));
+                .publishEvent(new UserRegistrationEvent(user,appUrl(request)));
     }
 
     @Override
@@ -193,13 +192,11 @@ public class UserServiceImpl implements UserService {
     public void validateToken(String token) {
         VerificationEntity verifyToken = verificationRepository.findByToken(token);
 
-        if (verifyToken == null) {
-            return;
+        if (verifyToken != null) {
+            UserEntity user = verifyToken.getUser();
+            user.setEnabled(true);
+            userRepository.save(user);
         }
-
-        UserEntity user = verifyToken.getUser();
-        user.setEnabled(true);
-        userRepository.save(user);
     }
 
     @Override
@@ -208,11 +205,7 @@ public class UserServiceImpl implements UserService {
                 .findByEmail(email)
                 .orElse(null);
 
-        if (user == null || !user.getEnabled()) {
-            return false;
-        }
-
-        return true;
+        return user != null && user.getEnabled();
     }
 
     private UserEntity getUserForEdit(Long id) {

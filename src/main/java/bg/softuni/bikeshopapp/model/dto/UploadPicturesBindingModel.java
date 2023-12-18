@@ -1,4 +1,4 @@
-package bg.softuni.bikeshopapp.model.binding;
+package bg.softuni.bikeshopapp.model.dto;
 
 import bg.softuni.bikeshopapp.validation.FileAnnotation;
 import org.springframework.web.multipart.MultipartFile;

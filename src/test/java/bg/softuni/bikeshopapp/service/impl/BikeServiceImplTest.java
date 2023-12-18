@@ -1,12 +1,10 @@
 package bg.softuni.bikeshopapp.service.impl;
 
 import bg.softuni.bikeshopapp.exception.ObjectNotFoundException;
-import bg.softuni.bikeshopapp.model.binding.BikeAddBindingModel;
-import bg.softuni.bikeshopapp.model.binding.ModelAddBindingModel;
+import bg.softuni.bikeshopapp.model.dto.BikeAddBindingModel;
 import bg.softuni.bikeshopapp.model.entity.BikeEntity;
 import bg.softuni.bikeshopapp.model.entity.ManufacturerEntity;
 import bg.softuni.bikeshopapp.model.entity.ModelEntity;
-import bg.softuni.bikeshopapp.model.entity.PictureEntity;
 import bg.softuni.bikeshopapp.model.enums.CategoryEnum;
 import bg.softuni.bikeshopapp.model.enums.FrameMaterialEnum;
 import bg.softuni.bikeshopapp.model.enums.FrameSizeEnum;
@@ -27,7 +25,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 

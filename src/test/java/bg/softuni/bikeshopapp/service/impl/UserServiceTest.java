@@ -2,9 +2,9 @@ package bg.softuni.bikeshopapp.service.impl;
 
 import bg.softuni.bikeshopapp.exception.ObjectNotFoundException;
 import bg.softuni.bikeshopapp.model.AppUserDetails;
-import bg.softuni.bikeshopapp.model.binding.UserEditNamesBindingModel;
-import bg.softuni.bikeshopapp.model.binding.UserEditPasswordBindingModel;
-import bg.softuni.bikeshopapp.model.binding.UserRegistrationBindingModel;
+import bg.softuni.bikeshopapp.model.dto.UserEditNamesBindingModel;
+import bg.softuni.bikeshopapp.model.dto.UserEditPasswordBindingModel;
+import bg.softuni.bikeshopapp.model.dto.UserRegistrationDto;
 import bg.softuni.bikeshopapp.model.entity.UserEntity;
 import bg.softuni.bikeshopapp.model.entity.UserRoleEntity;
 import bg.softuni.bikeshopapp.model.enums.UserRoleEnum;
@@ -71,7 +71,7 @@ class UserServiceTest {
 
     @Test
     void testRegisterUser() {
-        UserRegistrationBindingModel newUser = new UserRegistrationBindingModel()
+        UserRegistrationDto newUser = new UserRegistrationDto()
                 .setFirstName("FirstName")
                 .setLastName("LastName")
                 .setEmail("test@example.com")

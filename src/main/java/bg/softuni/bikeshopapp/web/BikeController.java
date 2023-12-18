@@ -1,7 +1,7 @@
 package bg.softuni.bikeshopapp.web;
 
-import bg.softuni.bikeshopapp.model.binding.BikeAddBindingModel;
-import bg.softuni.bikeshopapp.model.binding.UploadPicturesBindingModel;
+import bg.softuni.bikeshopapp.model.dto.BikeAddBindingModel;
+import bg.softuni.bikeshopapp.model.dto.UploadPicturesBindingModel;
 import bg.softuni.bikeshopapp.service.BikeService;
 import bg.softuni.bikeshopapp.service.ManufacturerService;
 import jakarta.validation.Valid;

@@ -1,11 +1,11 @@
-package bg.softuni.bikeshopapp.model.binding;
+package bg.softuni.bikeshopapp.model.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-public class UserRegistrationBindingModel {
+public class UserRegistrationDto {
     @NotEmpty
     @Size(min = 2, max = 20, message = "First name must be between 2 and 20 characters!")
     private String firstName;
@@ -22,10 +22,10 @@ public class UserRegistrationBindingModel {
     @Size(min = 8, max = 40, message = "Confirm password must be equal to password!")
     private String confirmPassword;
 
-    public UserRegistrationBindingModel() {
+    public UserRegistrationDto() {
     }
 
-    public UserRegistrationBindingModel(String firstName, String lastName, String email, String password, String confirmPassword) {
+    public UserRegistrationDto(String firstName, String lastName, String email, String password, String confirmPassword) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -37,7 +37,7 @@ public class UserRegistrationBindingModel {
         return firstName;
     }
 
-    public UserRegistrationBindingModel setFirstName(String firstName) {
+    public UserRegistrationDto setFirstName(String firstName) {
         this.firstName = firstName;
         return this;
     }
@@ -46,7 +46,7 @@ public class UserRegistrationBindingModel {
         return lastName;
     }
 
-    public UserRegistrationBindingModel setLastName(String lastName) {
+    public UserRegistrationDto setLastName(String lastName) {
         this.lastName = lastName;
         return this;
     }
@@ -55,7 +55,7 @@ public class UserRegistrationBindingModel {
         return email;
     }
 
-    public UserRegistrationBindingModel setEmail(String email) {
+    public UserRegistrationDto setEmail(String email) {
         this.email = email;
         return this;
     }
@@ -64,7 +64,7 @@ public class UserRegistrationBindingModel {
         return password;
     }
 
-    public UserRegistrationBindingModel setPassword(String password) {
+    public UserRegistrationDto setPassword(String password) {
         this.password = password;
         return this;
     }
@@ -73,12 +73,8 @@ public class UserRegistrationBindingModel {
         return confirmPassword;
     }
 
-    public UserRegistrationBindingModel setConfirmPassword(String confirmPassword) {
+    public UserRegistrationDto setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
         return this;
-    }
-
-    public String getFullName() {
-        return firstName + " " + lastName;
     }
 }

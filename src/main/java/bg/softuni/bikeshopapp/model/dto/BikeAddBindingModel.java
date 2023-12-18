@@ -1,4 +1,4 @@
-package bg.softuni.bikeshopapp.model.binding;
+package bg.softuni.bikeshopapp.model.dto;
 
 import bg.softuni.bikeshopapp.model.enums.CategoryEnum;
 import bg.softuni.bikeshopapp.model.enums.FrameMaterialEnum;

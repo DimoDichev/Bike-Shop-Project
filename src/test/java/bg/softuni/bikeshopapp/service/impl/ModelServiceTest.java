@@ -1,6 +1,6 @@
 package bg.softuni.bikeshopapp.service.impl;
 
-import bg.softuni.bikeshopapp.model.binding.ModelAddBindingModel;
+import bg.softuni.bikeshopapp.model.dto.ModelAddBindingModel;
 import bg.softuni.bikeshopapp.model.entity.ManufacturerEntity;
 import bg.softuni.bikeshopapp.model.entity.ModelEntity;
 import bg.softuni.bikeshopapp.repository.ManufacturerRepository;
