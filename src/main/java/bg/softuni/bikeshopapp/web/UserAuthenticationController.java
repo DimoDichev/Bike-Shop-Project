@@ -1,9 +1,12 @@
 package bg.softuni.bikeshopapp.web;
 
+import bg.softuni.bikeshopapp.model.AppUserDetails;
 import bg.softuni.bikeshopapp.model.view.UserBaseViewModel;
 import bg.softuni.bikeshopapp.service.UserService;
 import bg.softuni.bikeshopapp.service.VerificationService;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +25,11 @@ public class UserAuthenticationController {
     }
 
     @GetMapping("/login")
-    public String login() {
+    public String login(@AuthenticationPrincipal AppUserDetails user) {
+        if (user != null) {
+            return "redirect:/";
+        }
+
         return "user-login";
     }
 

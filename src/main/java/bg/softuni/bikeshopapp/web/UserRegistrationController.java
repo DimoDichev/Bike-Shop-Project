@@ -1,11 +1,13 @@
 package bg.softuni.bikeshopapp.web;
 
+import bg.softuni.bikeshopapp.model.AppUserDetails;
 import bg.softuni.bikeshopapp.model.dto.UserRegistrationDto;
 import bg.softuni.bikeshopapp.model.entity.VerificationEntity;
 import bg.softuni.bikeshopapp.service.UserService;
 import bg.softuni.bikeshopapp.service.VerificationService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,7 +27,11 @@ public class UserRegistrationController {
     }
 
     @GetMapping("/register")
-    public String register() {
+    public String register(@AuthenticationPrincipal AppUserDetails user) {
+        if (user != null) {
+            return "redirect:/";
+        }
+
         return "user-register";
     }
 
