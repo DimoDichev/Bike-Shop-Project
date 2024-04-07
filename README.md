@@ -1,2 +1,2 @@
 # Bike-Shop-Project
- Bike Shop App
+ Тhis is my thesis project
